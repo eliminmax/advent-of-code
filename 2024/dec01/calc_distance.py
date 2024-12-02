@@ -4,6 +4,8 @@
 #
 # SPDX-License-Identifier: 0BSD
 
+# Solution to AoC 2024 Day 1 Part 1
+
 from pathlib import Path
 import sys
 

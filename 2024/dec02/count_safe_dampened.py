@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+
 # SPDX-FileCopyrightText: 2024 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
+
+# Solution to AoC 2024 Day 2 Part 2
 import sys
 
 
