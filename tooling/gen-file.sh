@@ -25,7 +25,7 @@ cat > "$scriptname" <<EOF
 import sys
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         pass
 
