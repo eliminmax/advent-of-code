@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: NONE
+#
+# SPDX-License-Identifier: 0BSD
+
+[flake8]
+# ignore style lints that conflict with Black
+extend-ignore = E203,E701
