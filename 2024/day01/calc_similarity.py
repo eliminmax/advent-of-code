@@ -17,7 +17,7 @@ def get_frequency(n: int, col: list[int]) -> int:
     return n * col.count(n)
 
 
-def main():
+def main() -> None:
     infile = Path(sys.argv[1])
     with infile.open("r") as f:
         nums: list[tuple[int, int]] = [

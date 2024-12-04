@@ -14,13 +14,13 @@ def line_sum(line: list[int]) -> int:
     Returns the result of that division"""
     line = sorted(line, reverse=True)
     for index, val in enumerate(line):
-        for i in line[index+1:]:
+        for i in line[index + 1 :]:
             if val % i == 0:
                 return val // i
     raise ValueError
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         lines = [[int(i) for i in line.split()] for line in f if line]
     print(sum(map(line_sum, lines)))

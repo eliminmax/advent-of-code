@@ -17,7 +17,7 @@ def has_n(box_id: str, count: int) -> bool:
     return False
 
 
-def main():
+def main() -> None:
     total_with_2 = 0
     total_with_3 = 0
     with open(sys.argv[1], "r") as f:

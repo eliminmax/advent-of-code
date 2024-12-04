@@ -7,7 +7,7 @@
 # Solution to AoC 2024 Day 4 Part 1
 
 import sys
-from collections.abc import Iterable
+from collections.abc import Sequence
 
 # pre-compute list of offsets to use
 check_offsets: list[list[tuple[int, int]]] = [list() for _ in range(8)]
@@ -22,7 +22,7 @@ for i in range(1, 4):
     check_offsets[7].append((-i, -i))  # diagonal backwards down
 
 
-def count_xmases_at(row: int, col: int, grid: Iterable[Iterable[str]]) -> int:
+def count_xmases_at(row: int, col: int, grid: Sequence[Sequence[str]]) -> int:
     # check for "X" outside of loop rather than checking for each offset
     if grid[row][col] != "X":
         return 0
@@ -46,7 +46,7 @@ def count_xmases_at(row: int, col: int, grid: Iterable[Iterable[str]]) -> int:
     return matches
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         grid: list[str] = [line.strip() for line in f]
     total = 0

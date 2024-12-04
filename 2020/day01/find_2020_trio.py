@@ -9,12 +9,12 @@
 import sys
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         expenses = [int(i) for i in f]
     for index, val in enumerate(expenses):
-        for inner_index, inner_val in enumerate(expenses[index+1:]):
-            for i in expenses[inner_index+1:]:
+        for inner_index, inner_val in enumerate(expenses[index + 1 :]):
+            for i in expenses[inner_index + 1 :]:
                 if val + inner_val + i == 2020:
                     print(val * inner_val * i)
                     return

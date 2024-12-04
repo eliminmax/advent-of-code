@@ -118,7 +118,7 @@ def segments(steps: list[str]) -> list[Segment]:
     return sorted(seen_segments, key=lambda s: (s.start.x, s.start.y))
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         w0_segments, w1_segments = (
             segments(line.strip().split(",")) for line in f

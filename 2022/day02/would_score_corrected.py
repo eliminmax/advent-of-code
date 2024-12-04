@@ -25,7 +25,7 @@ movement_table["Y"] = dict(zip("ABC", "RPS"))
 movement_table["Z"] = dict(zip("ABC", "PSR"))
 
 
-def main():
+def main() -> None:
     score = 0
     with open(sys.argv[1], "r") as f:
         for round in f:

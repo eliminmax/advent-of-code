@@ -33,12 +33,14 @@ parse_pattern = re.compile(
 )
 
 
-def main():
-    claims = {}
+def main() -> None:
+    claims: dict[int, dict[int, int]] = {}
     with open(sys.argv[1], "r") as f:
         for line in f:
-            match = parse_pattern.match(line).groupdict()
-            claim(**{k: int(match[k]) for k in match}, claims=claims)
+            match = parse_pattern.match(line)
+            assert match is not None
+            match_dict = match.groupdict()
+            claim(**{k: int(match_dict[k]) for k in match_dict}, claims=claims)
     total = 0
     for row in claims.values():
         # map to bool to clamp values greater than 1 to 1

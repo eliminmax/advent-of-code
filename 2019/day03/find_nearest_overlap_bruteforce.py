@@ -19,7 +19,7 @@ def dist(a: int, b: int) -> int:
 
 def locs(steps: list[str]) -> list[tuple[int, int, int]]:
     x = y = 0
-    seen_locs = set()
+    seen_locs: set[tuple[int, int, int]] = set()
     for step in steps:
         delta = int(step[1:])
         ox = x
@@ -49,7 +49,7 @@ def locs(steps: list[str]) -> list[tuple[int, int, int]]:
     return sorted(seen_locs, key=lambda loc: loc[2])
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         w0_path, w1_path = [line.strip().split(",") for line in f]
     w0_locs = locs(w0_path)

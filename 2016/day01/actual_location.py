@@ -14,7 +14,7 @@ turns: dict[str, dict[str, str]] = {
 }
 
 
-def main():
+def main() -> None:
     positions_visited: list[tuple[int, int]] = []
     pos: tuple[int, int] = (0, 0)
     direction = "N"

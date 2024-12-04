@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     x, y = 0, 0
     visited: set[tuple[int, int]] = {(x, y)}
     with open(sys.argv[1], "r") as f:

@@ -40,7 +40,7 @@ def process_line(instructions: str, position: Point) -> Point:
     return position
 
 
-def main():
+def main() -> None:
     position = Point(x=0, y=2)
     with open(sys.argv[1], "r") as f:
         for line in f:

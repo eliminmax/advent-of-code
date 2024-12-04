@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         index = 1
         floor = 0

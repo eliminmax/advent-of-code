@@ -15,7 +15,7 @@ disable_pat = "(?P<disable>don't\\(\\))"
 pat = re.compile("|".join((mul_pat, enable_pat, disable_pat)))
 
 
-def main():
+def main() -> None:
     total = 0
     enabled = True
     with open(sys.argv[1], "r") as f:
@@ -26,7 +26,7 @@ def main():
             elif groupdict["disable"]:
                 enabled = False
             elif enabled:
-                total += (int(groupdict["arg0"]) * int(groupdict["arg1"]))
+                total += int(groupdict["arg0"]) * int(groupdict["arg1"])
     print(total)
 
 

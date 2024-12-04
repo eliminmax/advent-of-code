@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         lines = [[int(i) for i in line.split()] for line in f if line]
     print(sum(map(lambda line: max(line) - min(line), lines)))

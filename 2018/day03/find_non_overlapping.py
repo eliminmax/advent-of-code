@@ -34,13 +34,15 @@ parse_pattern = re.compile(
 )
 
 
-def main():
+def main() -> None:
     location_claims: dict[int, dict[int, set[int]]] = {}
     claim_nums: set[int] = set()
     with open(sys.argv[1], "r") as f:
         for line in f:
-            match = parse_pattern.match(line).groupdict()
-            args = {k: int(match[k]) for k in match}
+            match = parse_pattern.match(line)
+            assert match is not None
+            matchdict = match.groupdict()
+            args = {k: int(matchdict[k]) for k in matchdict}
             claim_nums.add(args["num"])
             claim(**args, claims=location_claims)
     # now, remove any ID that appears in a shared claim

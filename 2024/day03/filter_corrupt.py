@@ -12,12 +12,12 @@ import re
 mul_pat = re.compile("mul\\(([0-9]+),([0-9]+)\\)")
 
 
-def main():
+def main() -> None:
     total = 0
     with open(sys.argv[1], "r") as f:
         for match in mul_pat.finditer(f.read()):
             group = match.groups()
-            total += (int(group[0]) * int(group[1]))
+            total += int(group[0]) * int(group[1])
     print(total)
 
 

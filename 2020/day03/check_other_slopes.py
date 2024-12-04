@@ -11,10 +11,12 @@ from itertools import cycle
 from collections.abc import Iterable, Generator, Sequence
 from typing import TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
-def column_generator(template: Sequence[Iterable[T]]) -> Generator[list[T]]:
+def column_generator(
+    template: Sequence[Iterable[T]],
+) -> Generator[Sequence[T], None, None]:
     cycles = [cycle(i) for i in template]
     while True:
         yield [next(i) for i in cycles]
@@ -26,7 +28,7 @@ def slope_check(rows: Sequence[Iterable[str]], right: int, down: int) -> int:
     _ = next(cols)
     total = 0
     for i in range(down, len(rows), down):
-        result = "."
+        result: Sequence[str] = "."
         # 3 over, 1 down
         for _ in range(right):
             result = next(cols)
@@ -35,7 +37,7 @@ def slope_check(rows: Sequence[Iterable[str]], right: int, down: int) -> int:
     return total
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         rows: list[Iterable[str]] = [line.strip() for line in f]
     product = 1

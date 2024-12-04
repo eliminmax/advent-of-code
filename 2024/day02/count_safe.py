@@ -17,7 +17,7 @@ def is_safe(vals: list[int]) -> bool:
     return False
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         lines: list[str] = list(f)
     rows: list[list[int]] = [[int(i) for i in line.split()] for line in lines]

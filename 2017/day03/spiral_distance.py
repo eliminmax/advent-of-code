@@ -34,7 +34,7 @@ def spiral_distance(n: int) -> int:
     return ring_num - distance_to_corner - 1
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         distance = int(f.read().strip())
     print(spiral_distance(distance))

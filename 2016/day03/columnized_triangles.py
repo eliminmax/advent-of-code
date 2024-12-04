@@ -13,7 +13,7 @@ def is_valid(a: int, b: int, c: int) -> bool:
     return (a < b + c) and (b < a + c) and (c < a + b)
 
 
-def main():
+def main() -> None:
     valid_triangles = 0
     with open(sys.argv[1], "r") as f:
         lines = list(f)

@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     positions: dict[bool, dict[str, int]] = {
         True: {"x": 0, "y": 0},
         False: {"x": 0, "y": 0},

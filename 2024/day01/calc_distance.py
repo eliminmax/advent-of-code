@@ -10,7 +10,7 @@ from pathlib import Path
 import sys
 
 
-def main():
+def main() -> None:
     infile = Path(sys.argv[1])
     with infile.open("r") as f:
         nums: list[tuple[int, int]] = [

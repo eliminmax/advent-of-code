@@ -8,13 +8,11 @@
 
 import sys
 from math import sqrt, ceil
-from collections.abc import Generator
 
 from spiral import spiral, Coords
 
 
 def sum_neighbors(pos: Coords, grid: list[list[int]]) -> int:
-
     coord_pairs = [
         Coords(x, y)
         for x in range(max(pos.x - 1, 0), min(pos.x + 2, len(grid)))
@@ -23,7 +21,7 @@ def sum_neighbors(pos: Coords, grid: list[list[int]]) -> int:
     return sum(map(lambda loc: grid[loc.y][loc.x], coord_pairs))
 
 
-def find_first_highest(n: int) -> int:
+def find_first_highest(n: int) -> int | None:
     ring_count: int = ceil(sqrt(n))
     size = ring_count * 2 - 1
     # create a zero-initialized size*size grid
@@ -31,7 +29,7 @@ def find_first_highest(n: int) -> int:
     # would create multiple references to the same list rather than 1 list
     # per row
     grid = [[0] * size for _ in range(size)]
-    coords: Generator[Coords] = spiral(ring_count)
+    coords = spiral(ring_count)
     start = next(coords)
     # set middle value to 1
     grid[start.y][start.x] = 1
@@ -41,9 +39,10 @@ def find_first_highest(n: int) -> int:
             return new_val
         else:
             grid[pos.y][pos.x] = new_val
+    return None
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         distance = int(f.read().strip())
     print(find_first_highest(distance))

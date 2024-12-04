@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         instructions: list[tuple[str, int]] = [
             (a, int(b)) for a, b in (line.strip().split() for line in f)

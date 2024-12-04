@@ -12,7 +12,7 @@ def floor_count(instruction: str) -> int:
     return instruction.count("(") - instruction.count(")")
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         # treating  f as an iterable iterates over lines in f
         print(floor_count(f.read()))

@@ -42,7 +42,9 @@ class Segment:
 
     def distance(self, p: Point) -> int:
         if self.reversed:
-            return self.initial_distance + (self.get_end().get_value(self.axis) - p.get_value(self.axis))
+            return self.initial_distance + (
+                self.get_end().get_value(self.axis) - p.get_value(self.axis)
+            )
         return self.initial_distance + (
             p.get_value(self.axis) - self.start.get_value(self.axis)
         )
@@ -84,8 +86,9 @@ class Segment:
 
     def soft_repr(self) -> str:
         return (
-            f"Segment(axis={self.axis}, start={self.start}, length={self.length}, "
-            f"reversed={self.reversed}, initial_distance={self.initial_distance}, "
+            f"Segment(axis={self.axis}, start={self.start}, "
+            f"length={self.length}, reversed={self.reversed}, "
+            f"initial_distance={self.initial_distance}, "
             f"previous={'None' if self.previous is None else '[...]'}"
         )
 
@@ -99,7 +102,7 @@ class Segment:
 def segments(steps: list[str]) -> list[Segment]:
     x = y = 0
     total_distance = 0
-    seen_segments = []
+    seen_segments: list[Segment] = []
     for step in steps:
         delta = int(step[1:])
         match step[0]:
@@ -148,7 +151,7 @@ def segments(steps: list[str]) -> list[Segment]:
     return seen_segments
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         w0_segments, w1_segments = (
             segments(line.strip().split(",")) for line in f

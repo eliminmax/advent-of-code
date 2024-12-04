@@ -24,19 +24,19 @@ def parse_game(game_string: str) -> GameInfo:
     max_g = 0
     max_b = 0
     for pick in outcome.split("; "):
-        for part in pick.split(', '):
+        for part in pick.split(", "):
             num_str, color = part.split()
             match color:
-                case 'red':
+                case "red":
                     max_r = max(max_r, int(num_str))
-                case 'green':
+                case "green":
                     max_g = max(max_g, int(num_str))
-                case 'blue':
+                case "blue":
                     max_b = max(max_b, int(num_str))
     return GameInfo(game_num, max_r, max_g, max_b)
 
 
-def main():
+def main() -> None:
     with open(sys.argv[1], "r") as f:
         games: list[GameInfo] = [parse_game(line) for line in f]
     possible = filter(lambda a: a.r <= 12 and a.g <= 13 and a.b <= 14, games)

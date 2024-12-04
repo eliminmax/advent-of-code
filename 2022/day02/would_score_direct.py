@@ -15,7 +15,7 @@ scoring_rules: dict = {
 }
 
 
-def main():
+def main() -> None:
     score = 0
     with open(sys.argv[1], "r") as f:
         for round in f:

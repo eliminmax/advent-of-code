@@ -9,7 +9,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     valid_triangles = 0
     with open(sys.argv[1], "r") as f:
         for line in f:

@@ -12,7 +12,7 @@ class Coords(NamedTuple):
     y: int
 
 
-def spiral(ring_count: int) -> Generator[Coords]:
+def spiral(ring_count: int) -> Generator[Coords, None, None]:
     """Generatpr for coordinate pairs to iterate through n rings,
     represented as a 2D array
 

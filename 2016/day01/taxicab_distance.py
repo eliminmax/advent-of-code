@@ -15,7 +15,7 @@ turns: dict[str, dict[str, str]] = {
 }
 
 
-def main():
+def main() -> None:
     distances: dict[str, int] = {"N": 0, "E": 0, "S": 0, "W": 0}
     current_direction = "N"
     with open(sys.argv[1], "r") as f:
