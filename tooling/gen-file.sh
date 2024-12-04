@@ -6,12 +6,12 @@
 
 # generate python script skeleton
 
-if [ "$#" -ne 4 ]; then
-    printf 'Unexpected number of arguments: expected 4, not %d!\n' "$#" >&2
+if [ "$#" -ne 3 ]; then
+    printf 'Unexpected number of arguments: expected 3, not %d!\n' "$#" >&2
     exit 1
 fi
 
-scriptname="$1.py"; year="$2"; day="$3"; part="$4"
+part="$1"; year="$2"; day="$3"; scriptname="part$part.py"
 
 cat > "$scriptname" <<EOF
 #!/usr/bin/env python3
