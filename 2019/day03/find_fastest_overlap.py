@@ -84,14 +84,6 @@ class Segment:
                 return Point(x=y_seg.start.x, y=x_seg.start.y)
         return None
 
-    def soft_repr(self) -> str:
-        return (
-            f"Segment(axis={self.axis}, start={self.start}, "
-            f"length={self.length}, reversed={self.reversed}, "
-            f"initial_distance={self.initial_distance}, "
-            f"previous={'None' if self.previous is None else '[...]'}"
-        )
-
     def intersection_distance(self, other: Self) -> int | None:
         intersect = self.intersection(other)
         if not intersect:
