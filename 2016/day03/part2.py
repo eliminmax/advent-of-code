@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-# Solution to AoC 2016 Day 3 Part 1
+# Solution to AoC 2016 Day 3 Part 2
 
 import sys
 

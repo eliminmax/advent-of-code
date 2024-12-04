@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-# Solution to AoC 2023 Day 1 Part 1
+# Solution to AoC 2023 Day 1 Part 2
 
 {
     # replace spelled-out digits with numerals
