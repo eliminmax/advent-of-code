@@ -11,7 +11,13 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-part="$1"; year="$2"; day="$3"; scriptname="part$part.py"
+part="$1"; year="$2"; day="$3";
+
+if [ "$day" -lt 10 ]; then 
+    scriptname="part${part}_${year}_0${day}.py"
+else
+    scriptname="part${part}_${year}_${day}.py"
+fi
 
 cat > "$scriptname" <<EOF
 #!/usr/bin/env python3
