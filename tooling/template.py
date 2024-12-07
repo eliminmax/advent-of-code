@@ -6,7 +6,7 @@ import sys
 
 
 def main() -> None:
-    with open(sys.argv[1], "r") as f:
+    with open(sys.argv[1] if sys.argv[1:] else "input", "r") as f:
         pass
 
 
