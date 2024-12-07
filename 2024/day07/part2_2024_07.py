@@ -9,7 +9,6 @@
 import sys
 from typing import NamedTuple
 from operator import add, mul
-from functools import lru_cache
 
 
 class Equation(NamedTuple):
@@ -21,7 +20,6 @@ def concat_digits(a: int, b: int) -> int:
     return int(str(a) + str(b))
 
 
-@lru_cache(maxsize=16384)
 def is_possible_from(start: int, tgt: int, *remaining: int) -> bool:
     if not remaining:
         if start == tgt:
