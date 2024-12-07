@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: 0BSD
 
-// Solution to AoC 2024 Day 06 Part 2
+// Solution to AoC 2024 Day 6 Part 2
 
 use std::env::args;
 use std::fs::read;

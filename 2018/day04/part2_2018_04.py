@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-# Solution to AoC 2018 Day 04 Part 2
+# Solution to AoC 2018 Day 4 Part 2
 
 import sys
 import re

@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-# Solution to AoC 2024 Day 07 Part 2
+# Solution to AoC 2024 Day 7 Part 2
 
 import sys
 from typing import NamedTuple
