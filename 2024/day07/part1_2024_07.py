@@ -8,9 +8,7 @@
 
 import sys
 from typing import NamedTuple
-from collections.abc import Callable, Iterable
 from operator import add, mul
-from itertools import accumulate
 
 
 class Equation(NamedTuple):
@@ -18,25 +16,27 @@ class Equation(NamedTuple):
     values: list[int]
 
 
-def is_possible(equation: Equation) -> None | int:
-    # prepare for something cursed
-    op_count = len(equation.values) - 1
-    specifier = f"0{op_count}b"
-    for i in range(2 ** op_count):
-        # map the zeroes in the binary representation of i to add, and the
-        # ones to mul
-        ops: Iterable[Callable[[int, int], int]] = map(
-            lambda c: add if c == '0' else mul,
-            f"{i:{specifier}}"
-        )
-        *_, result = accumulate(
-            equation.values[1:],
-            func=lambda a, b: next(ops)(a, b),
-            initial=equation.values[0]
-        )
-        if result == equation.target:
-            return equation.target
-    return None
+def is_possible_from(start: int, tgt: int, *remaining: int) -> bool:
+    if not remaining:
+        if start == tgt:
+            return True
+        return False
+
+    results: list[int] = []
+    for func in (add, mul):
+        result: int = func(start, remaining[0])
+        if result <= tgt:
+            results.append(result)
+    return any(
+        map(lambda r: is_possible_from(r, tgt, *remaining[1:]), results)
+    )
+
+
+def target_if_possible(equation: Equation) -> int:
+    # complete rework compared to part 1
+    if is_possible_from(0, equation.target, *equation.values):
+        return equation.target
+    return 0
 
 
 def main() -> None:
@@ -45,7 +45,7 @@ def main() -> None:
             Equation(int(a), [int(i) for i in b.split()])
             for a, b in (line.split(": ") for line in f)
         ]
-    print(sum(filter(lambda f: f is not None, map(is_possible, equations))))
+    print(sum(map(target_if_possible, equations)))
 
 
 if __name__ == "__main__":
