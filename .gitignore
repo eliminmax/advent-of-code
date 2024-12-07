@@ -3,6 +3,6 @@
 # SPDX-License-Identifier: 0BSD
 
 sample_input
-sample_result
+sample_result[12]
 input
-result
+result[12]
