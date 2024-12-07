@@ -18,6 +18,7 @@ c_name="$(git config user.name)"
 case "${1:-python}" in
     rs|rust) extension="rs" ;;
     awk) extension="awk" ;;
+    c) extension="c" ;;
     py|python) extension="py" ;;
 esac
 
@@ -38,6 +39,11 @@ sed "s/--solution-comment--/Solution to AoC $year Day $day Part 1/" \
 
 reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname"
 
+# mark scripts as exectutable, and add appropriate gitignore for
+# compiled languages
 if [ "$(head -c2 "$outname")" = '#!' ]; then
     chmod +x "$outname"
+else
+    printf '*\n!.gitignore\n!*.%s\n' "$extension" > .gitignore
+    reuse annotate -l 0BSD -y "$c_year" -c "$c_name" .gitignore
 fi

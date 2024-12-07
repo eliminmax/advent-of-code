@@ -16,6 +16,7 @@ c_name="$(git config user.name)"
 case "${1:-python}" in
     rs|rust) extension="rs" ;;
     awk) extension="awk" ;;
+    c) extension="c" ;;
     py|python) extension="py" ;;
 esac
 
