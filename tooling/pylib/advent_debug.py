@@ -9,7 +9,7 @@ from rich import print as rprint
 
 def eprint(*args, **kwargs):
     """Wrapper around rich.print that defaults to file=sys.stderr
-        Has the same semantics as print. """
+    Has the same semantics as print."""
     if "file" not in kwargs:
         kwargs["file"] = stderr
     rprint(*args, **kwargs)
