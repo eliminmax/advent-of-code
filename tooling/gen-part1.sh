@@ -7,7 +7,7 @@
 # generate source file from template
 set -e
 
-template_dir="$(dirname "$(realpath "$0")")"
+template_dir="$(dirname "$(realpath "$0")")/templates"
 
 # set year and day arguments by parsing current directory name
 eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([1-9]\?[0-9]\)$#year=\1 day=\2#')"
