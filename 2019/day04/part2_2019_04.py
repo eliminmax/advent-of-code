@@ -11,9 +11,7 @@ from itertools import pairwise
 
 
 def has_pair(s: str) -> bool:
-    pairs: list[str] = list(
-        "".join((a, b)) for a, b in pairwise(s)
-    )
+    pairs: list[str] = list("".join((a, b)) for a, b in pairwise(s))
     for i, pair in enumerate(pairs):
         if pairs[i + 1 :] and pair == pairs[i + 1]:
             continue

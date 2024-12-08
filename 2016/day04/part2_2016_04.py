@@ -42,18 +42,12 @@ def gen_cipher(shift: int) -> Cipher:
 
 
 def decipher_with(cipher: Cipher, crypttext: str) -> str:
-    return "".join(
-        map(
-            lambda c: cipher[c] if c in cipher else c,
-            crypttext
-        )
-    )
+    return "".join(map(lambda c: cipher[c] if c in cipher else c, crypttext))
 
 
 def decode(room_name: RoomName) -> str:
     return decipher_with(
-        gen_cipher(room_name.sector_id % 26),
-        room_name.crypttext
+        gen_cipher(room_name.sector_id % 26), room_name.crypttext
     )
 
 

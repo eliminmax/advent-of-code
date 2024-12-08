@@ -9,6 +9,7 @@
 import sys
 import re
 from itertools import pairwise
+
 repeat_pat = re.compile(r"(\d)\1")
 
 
