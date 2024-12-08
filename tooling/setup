@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2024 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+# shellcheck: shell=bash
+# vi: ft=bash
+
+pylibdir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/pylib"
+# surround with colons to simplify matching if pylibdir is at an end
+case ":$PYTHONPATH:" in
+    # do nothing if pylibdir is already in PYTHONPATH
+    *":$pylibdir:"*) : ;;
+    # if PYTHONPATH is empty, set it to pylibdir
+    ::) export PYTHONPATH="$pylibdir" ;;
+    # if PYTHONPATH is non-empty, append it
+    *) export PYTHONPATH="$PYTHONPATH:$pylibdir" ;; # append
+esac
+unset pylibdir

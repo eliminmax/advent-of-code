@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: NONE
+# SPDX-FileCopyrightText: 2024 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
 
@@ -6,3 +6,4 @@ sample_input
 sample_result[12]
 input
 result[12]
+__pycache__/
