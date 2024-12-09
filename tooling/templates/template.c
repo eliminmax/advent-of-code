@@ -15,6 +15,6 @@ int main(int argc, char *argv[]) {
             filename,
             strerror(errno),
         );
-        abort();  
+        return EXIT_FAILURE;  
     }
 }
