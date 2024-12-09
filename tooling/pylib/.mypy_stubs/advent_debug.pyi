@@ -1,0 +1,3 @@
+from typing import Any
+
+def eprint(*args: Any, **kwargs: Any): ...
