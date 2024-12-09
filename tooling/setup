@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: 0BSD
 
 # shellcheck: shell=bash
-# vi: ft=bash
 
 pylibdir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/pylib"
 # surround with colons to simplify matching if pylibdir is at an end
@@ -13,6 +12,14 @@ case ":$PYTHONPATH:" in
     # if PYTHONPATH is empty, set it to pylibdir
     ::) export PYTHONPATH="$pylibdir" ;;
     # if PYTHONPATH is non-empty, append it
-    *) export PYTHONPATH="$PYTHONPATH:$pylibdir" ;; # append
+    *) export PYTHONPATH="$PYTHONPATH:$pylibdir" ;;
 esac
+mypystubdir="$pylibdir/.mypy_stubs"
+case ":$MYPYPATH:" in
+    *":$mypystubdir:"*) : ;;
+    ::) export MYPYPATH="$mypystubdir" ;;
+    *) export MYPYPATH="$MYPYPATH:$mypystubdir" ;;
+esac
+unset mypystubdir
 unset pylibdir
+# vi: ft=bash
