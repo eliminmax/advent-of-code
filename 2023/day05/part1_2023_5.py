@@ -7,14 +7,18 @@
 # Solution to AoC 2023 Day 5 Part 1
 
 import sys
-from typing import Optional
+from typing import Optional, TypeAlias, cast
+
+TriInt: TypeAlias = tuple[int, int, int]
 
 
 class SectionMappings:
-    def __init__(self, section_text):
-        self.section_mappings: list[tuple[int, int, int]] = []
+    def __init__(self, section_text: str):
+        self.section_mappings: list[TriInt] = []
         for line in (line for line in section_text.split("\n") if line):
-            self.section_mappings.append(tuple(int(i) for i in line.split()))
+            self.section_mappings.append(
+                cast(TriInt, tuple(int(i) for i in line.split()))
+            )
 
     def __getitem__(self, k: int) -> int:
         for dst_start, src_start, range_len in self.section_mappings:

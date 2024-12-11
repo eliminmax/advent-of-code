@@ -41,7 +41,7 @@ class AlmanacRange:
             pre = AlmanacRange(self.start, src.start)
             processed = AlmanacRange(dest.start, dest.stop)
             post = AlmanacRange(src.stop, self.stop)
-            leftovers: list[Self] = []
+            leftovers: list["AlmanacRange"] = []
             if pre:
                 leftovers.append(pre)
             if post:
