@@ -7,6 +7,7 @@ from typing import NamedTuple, Self
 
 class Point(NamedTuple):
     """A point on a grid"""
+
     row: int
     col: int
 
