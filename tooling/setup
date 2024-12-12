@@ -1,14 +1,17 @@
+#!/usr/bin/env bash
+
 # SPDX-FileCopyrightText: 2024 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
 
-# shellcheck: shell=bash
-
 
 aoc_setup () {
 
-local pylibdir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/pylib"
-local mypystubdir="$pylibdir/.mypy_stubs"
+    cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." || return 1
+
+    local pylibdir="$PWD/pylib"
+    local mypystubdir="$pylibdir/.mypy_stubs"
+    local toolingbindir="$PWD/tooling/bin"
 
     # surround with colons to simplify matching if pylibdir is at an end
     case ":$PYTHONPATH:" in
@@ -25,10 +28,16 @@ local mypystubdir="$pylibdir/.mypy_stubs"
         ::) export MYPYPATH="$mypystubdir" ;;
         *) export MYPYPATH="$MYPYPATH:$mypystubdir" ;;
     esac
-    cd "$pylibdir/../.."
+
+    case ":$PATH:" in
+        *":$toolingbindir:"*) : ;;
+        # if PATH is empty, there's some deeper problem
+        *) export PATH="$PATH:$toolingbindir" ;;
+    esac
+
 }
 
 aoc_setup
 unset -f aoc_setup
-byobu -S tooling/byobusock
+exec byobu -S tooling/byobusock
 # vi: ft=bash
