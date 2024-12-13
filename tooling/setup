@@ -7,7 +7,7 @@
 
 aoc_setup () {
 
-    cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." || return 1
+    cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" || return 1
 
     local pylibdir="$PWD/pylib"
     local mypystubdir="$pylibdir/.mypy_stubs"
@@ -39,5 +39,5 @@ aoc_setup () {
 
 aoc_setup
 unset -f aoc_setup
-exec byobu -S tooling/byobusock
+exec byobu -S byobusock
 # vi: ft=bash
