@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-sample_input
-sample_result[12]
+sample_*
 input
+test_*
 result[12]
 __pycache__/
