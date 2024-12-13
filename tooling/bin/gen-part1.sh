@@ -30,7 +30,7 @@ fi
 
 template_file="$template_dir/template.$extension"
 if ! [ -e "$template_file" ]; then
-    printf 'File %f does not exist!\n' "$template_file" >&2
+    printf 'File %s does not exist!\n' "$template_file" >&2
     exit 1
 fi
 
