@@ -35,6 +35,8 @@ aoc_setup () {
         *) export PATH="$PATH:$toolingbindir" ;;
     esac
 
+    cd ..
+
 }
 
 aoc_setup
