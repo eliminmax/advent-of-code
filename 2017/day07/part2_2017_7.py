@@ -22,7 +22,7 @@ class Program:
 
 
 class ProgramManager:
-    def __init__(self: "Self"):
+    def __init__(self: Self):
         self._programs: dict[str, Program] = {}
         self._unresolved_holds: dict[str, str] = {}
         self.bottom: str | None = None

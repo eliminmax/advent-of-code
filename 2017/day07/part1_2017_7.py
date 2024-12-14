@@ -8,6 +8,7 @@
 
 import sys
 from dataclasses import dataclass
+from typing import Self
 
 
 @dataclass
@@ -18,7 +19,7 @@ class Program:
 
 
 class ProgramManager:
-    def __init__(self):
+    def __init__(self: Self):
         self._programs: dict[str, Program] = {}
         self._unresolved: dict[str, str] = {}
 
