@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: 0BSD
 
-// Solution to AoC 2019 Day 2 Part 2
+// Solution to AoC 2019 Day 5 Part 2
 
 use std::env::args;
 use std::fs::read_to_string;
