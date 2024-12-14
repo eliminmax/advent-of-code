@@ -8,7 +8,7 @@ SPDX-License-Identifier: 0BSD
 
 I started Advent of Code in 2023, but only got 2 days in before I was caught up with other things.
 
-For 2024, I'm trying to go through multiple years of Advent of Code at once, using whatever langauges seem to be the best tools for the job based on my experience.
+For 2024, I'm trying to go through multiple years of Advent of Code at once, using whatever languages seem to be the best tools for the job based on my experience.
 
 My goal is to solve 100% 2024 by the end of the day on December 25th, and solve all ten years' challenges before Advent of Code 2025.
 

@@ -14,7 +14,7 @@ def spiral_distance(n: int) -> int:
     # determine what ring of the spiral n is in
 
     # each ring goes up to the square of an odd number - the innermost ring
-    # contians 1**2, then it's (1**2)+1 through (3**2), then (3**2 + 1) through
+    # contains 1**2, then it's (1**2)+1 through (3**2), then (3**2 + 1) through
     # (5**2), and so on. The starting and ending ring number can be calculated
     # with the following formula:
     ring_num: int = ceil(sqrt(n))

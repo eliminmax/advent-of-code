@@ -26,8 +26,8 @@ def is_valid(room_name: RoomName) -> bool:
             set(filter(str.islower, room_name.crypttext)),
             # primary key is the number of occurrences in descending order, and
             # fall back to alphabetical order. Because the former is in
-            # decending order and the latter is not, it's not as simple as just
-            # passing reverse=True
+            # descending order and the latter is not, it's not as simple as
+            # just passing reverse=True
             key=lambda c: (-room_name.crypttext.count(c), c),
         )
     ).startswith(room_name.cksum)
