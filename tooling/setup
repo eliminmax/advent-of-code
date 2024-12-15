@@ -11,7 +11,7 @@ aoc_setup () {
 
     local pylibdir="$PWD/pylib"
     local mypystubdir="$pylibdir/.mypy_stubs"
-    local toolingbindir="$PWD/tooling/bin"
+    local toolingbindir="$PWD/bin"
 
     # surround with colons to simplify matching if pylibdir is at an end
     case ":$PYTHONPATH:" in
@@ -41,5 +41,5 @@ aoc_setup () {
 
 aoc_setup
 unset -f aoc_setup
-exec byobu -S byobusock
+exec byobu -S tooling/byobusock
 # vi: ft=bash
