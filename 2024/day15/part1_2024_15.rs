@@ -87,7 +87,7 @@ impl FromStr for WarehouseFloor {
 
         let bot_location: (usize, usize) = bot_location.ok_or(WarehouseParseError::NoBots)?;
 
-        let cols = grid.get(0).ok_or(WarehouseParseError::EmptyGrid)?.len();
+        let cols = grid.first().ok_or(WarehouseParseError::EmptyGrid)?.len();
         let rows = grid.len();
 
         if cols == 0 {

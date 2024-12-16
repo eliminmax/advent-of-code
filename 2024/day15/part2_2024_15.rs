@@ -96,7 +96,7 @@ impl FromStr for WarehouseFloor {
 
         let bot_loc: Location = bot_loc.ok_or(WarehouseParseError::NoBots)?;
 
-        let cols = grid.get(0).ok_or(WarehouseParseError::EmptyGrid)?.len();
+        let cols = grid.first().ok_or(WarehouseParseError::EmptyGrid)?.len();
         let rows = grid.len();
 
         if cols == 0 {
@@ -308,7 +308,6 @@ impl WarehouseFloor {
                     self.swap(*move_from, next);
                 }
                 self.bot_loc = next_loc!(self.bot_loc, bot_move);
-            } else {
             }
         }
         self.tally_gps()
