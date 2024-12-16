@@ -23,3 +23,7 @@ eprint(
     f"[red]Loaded [green]{__file__}[/green]."
     " Don't forget to remove debug print statements before committing![/red]"
 )
+
+
+class TodoError(NotImplementedError):
+    """Error for a part of the process not yet implemented"""
