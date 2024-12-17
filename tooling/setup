@@ -40,6 +40,12 @@ aoc_setup () {
 }
 
 aoc_setup
-unset -f aoc_setup
-exec byobu -S tooling/byobusock
+
+tmux_status="$(byobu-tmux -S tooling/byobusock ls 2>&1)"
+
+if [ "$tmux_status" = 'no server running on tooling/byobusock' ]; then
+    exec byobu-tmux -S tooling/byobusock
+else
+    exec byobu-tmux -S tooling/byobusock attach
+fi
 # vi: ft=bash
