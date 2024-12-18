@@ -13,7 +13,7 @@ eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([1-9]\?[0-9]\)$#year=\1 day=\2#')
 c_year="$(date +%Y)"
 c_name="$(git config user.name)"
 
-case "${1:-python}" in
+case "${1:-rust}" in
     rs|rust) extension="rs" ;;
     awk) extension="awk" ;;
     c) extension="c" ;;
