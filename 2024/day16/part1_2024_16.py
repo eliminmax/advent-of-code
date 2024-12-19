@@ -7,7 +7,7 @@
 # Solution to AoC 2024 Day 16 Part 1
 
 # I feel like making it this far into Advent of Code without a formal academic
-# backround in algorithms like Dijkstra's or A* is quite the achievement. To be
+# background in algorithms like Dijkstra's or A* is quite the achievement. To be
 # fair, I have spent lot of time getting hands-on experience writing code for
 # various purposes, and have taken classes on programming, particularly for
 # system automation, while working towards my Computer Networking and
