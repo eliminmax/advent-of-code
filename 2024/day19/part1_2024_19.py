@@ -6,19 +6,35 @@
 
 # Solution to AoC 2024 Day 19 Part 1
 
-# NOTE: this solution shells out to ripgrep for its much faster regex engine
-# https://github.com/BurntSushi/ripgrep
-
 import sys
-from subprocess import run
+from functools import cache
+
+
+@cache
+def possible_arrangement(pattern: str, towels: tuple[str, ...]) -> bool:
+    for towel in towels:
+        if pattern == towel:
+            return True
+        elif pattern.startswith(towel):
+            if possible_arrangement(
+                pattern.replace(towel, "", 1), towels
+            ):
+                return True
+    return False
 
 
 def main() -> None:
     infile = sys.argv[1] if sys.argv[1:] else "input"
 
     with open(infile, "r") as f:
-        towels_pat = f"^({'|'.join(next(f).replace(',', '').split())})+$"
-        run(["rg", "--count", towels_pat, infile])
+        towels: tuple[str, ...] = tuple(next(f).replace(',', '').split())
+        assert next(f).strip() == ""
+        patterns = [line.strip() for line in f]
+    total = 0
+    for pat in patterns:
+        if possible_arrangement(pat, towels):
+            total += 1
+    print(total)
 
 
 if __name__ == "__main__":
