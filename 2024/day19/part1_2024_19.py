@@ -16,9 +16,7 @@ def possible_arrangement(pattern: str, towels: tuple[str, ...]) -> bool:
         if pattern == towel:
             return True
         elif pattern.startswith(towel):
-            if possible_arrangement(
-                pattern.replace(towel, "", 1), towels
-            ):
+            if possible_arrangement(pattern.replace(towel, "", 1), towels):
                 return True
     return False
 
@@ -27,7 +25,7 @@ def main() -> None:
     infile = sys.argv[1] if sys.argv[1:] else "input"
 
     with open(infile, "r") as f:
-        towels: tuple[str, ...] = tuple(next(f).replace(',', '').split())
+        towels: tuple[str, ...] = tuple(next(f).replace(",", "").split())
         assert next(f).strip() == ""
         patterns = [line.strip() for line in f]
     total = 0

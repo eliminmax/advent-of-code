@@ -27,7 +27,7 @@ def main() -> None:
     infile = sys.argv[1] if sys.argv[1:] else "input"
 
     with open(infile, "r") as f:
-        towels: tuple[str, ...] = tuple(next(f).replace(',', '').split())
+        towels: tuple[str, ...] = tuple(next(f).replace(",", "").split())
         assert next(f).strip() == ""
         patterns = [line.strip() for line in f]
     print(sum(possible_arrangements(pattern, towels) for pattern in patterns))
