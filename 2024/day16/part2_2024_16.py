@@ -7,9 +7,9 @@
 # Solution to AoC 2024 Day 16 Part 2
 
 # I feel like making it this far into Advent of Code without a formal academic
-# background in algorithms like Dijkstra's or A* is quite the achievement. To be
-# fair, I have spent lot of time getting hands-on experience writing code for
-# various purposes, and have taken classes on programming, particularly for
+# background in algorithms like Dijkstra's or A* is quite the achievement. To
+# be fair, I have spent lot of time getting hands-on experience writing code
+# for various purposes, and have taken classes on programming, particularly for
 # system automation, while working towards my Computer Networking and
 # Cybersecurity degree, and have been programming for fun since middle school
 
