@@ -18,6 +18,7 @@ case "${1:-rust}" in
     awk) extension="awk" ;;
     c) extension="c" ;;
     py|python) extension="py" ;;
+    jq) extension="jq" ;;
 esac
 
 part1_name="part1_${year}_${day}.${extension}"
@@ -34,7 +35,11 @@ fi
 
 sed "/Solution to AoC/s/Part 1/Part 2/" "$part1_name" > "$outname"
 
-reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname" --merge-copyrights
+if [ "$extension" = 'jq' ]; then
+    reuse annotate --style python -l 0BSD -y "$c_year" -c "$c_name" "$outname"
+else
+    reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname"
+fi
 
 if [ "$(head -c2 "$outname")" = '#!' ]; then
     chmod +x "$outname"

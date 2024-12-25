@@ -20,6 +20,7 @@ case "${1:-rust}" in
     awk) extension="awk" ;;
     c) extension="c" ;;
     py|python) extension="py" ;;
+    jq) extension="jq" ;;
 esac
 
 outname="part1_${year}_${day}.${extension}"
@@ -37,7 +38,11 @@ fi
 sed "s/--solution-comment--/Solution to AoC $year Day $day Part 1/" \
     "$template_file" > "$outname"
 
-reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname"
+if [ "$extension" = 'jq' ]; then
+    reuse annotate --style python -l 0BSD -y "$c_year" -c "$c_name" "$outname"
+else
+    reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname"
+fi
 
 # mark scripts as exectutable, and add appropriate gitignore for
 # compiled languages
