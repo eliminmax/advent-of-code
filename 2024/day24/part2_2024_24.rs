@@ -94,7 +94,7 @@ impl WireKit {
     }
 
     /// try to resolve wire value
-    /// * If already resovled (i.e. `matches!(&self[wire_id], Wire::Literal(_))`, returns `Ok(true)`
+    /// * If already resolved (i.e. `matches!(&self[wire_id], Wire::Literal(_))`, returns `Ok(true)`
     /// * Otherwise:
     ///     * if wire_a and wire_b are both resolved, sets `&self[wire_id]` to the resolved signal,
     ///       then returns `Ok(true)`
@@ -177,7 +177,7 @@ impl WireKit {
         clone
     }
 
-    /// Per u/LxsterGames on the subreddit, the connections between circuts going into z wires
+    /// Per u/LxsterGames on the subreddit, the connections between circuits going into z wires
     /// other than the last one should be XORs, and connections going into any other wires except
     /// if coming from an x and y wire pair should be ANDs or ORs, but not XORs, and 3 of the 4
     /// pairs that need swapping can be found with that information. I did not read beyond that

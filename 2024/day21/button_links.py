@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2024 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
-# hard-code direct links and programatically fill in the blanks
+# hard-code direct links and programmatically fill in the blanks
 from dataclasses import dataclass
 from itertools import product
 

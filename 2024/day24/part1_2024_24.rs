@@ -94,7 +94,7 @@ impl<'a> WireKit<'a> {
     }
 
     /// try to resolve wire value and return it.
-    /// * If already resovled (i.e. `matches!(&self[wire_id], Wire::Literal(_))`, returns `Ok(true)`
+    /// * If already resolved (i.e. `matches!(&self[wire_id], Wire::Literal(_))`, returns `Ok(true)`
     /// * Otherwise:
     ///     * if wire_a and wire_b are both resolved, sets `&self[wire_id]` to the resolved signal,
     ///       then returns `Ok(true)`
