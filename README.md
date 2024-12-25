@@ -6,7 +6,7 @@ SPDX-License-Identifier: 0BSD
 
 # My Advent of Code solutions
 
-These are my solutions to Advent of Code - mostly written in 2024, but not just for 2024 - I'm going through previous years as well - assuming I'm caught up on 2024's solutions, I'll go from 2015 day N ot 2016 day N through to 2023 day N, then 2015 day N + 1.
+These are my solutions to Advent of Code - mostly written in 2024, but not just for 2024 - while working on Advent of Code 2024, I went through previous years as well - whenever I was caught up on 2024's solutions, I'd go from 2015 day N to 2016 day N through to 2023 day N, then 2015 day N + 1. Upon completing 2024's Advent of code, I decided to iterate through the years one by one rather than iterating through the days.
 
 I started Advent of Code in 2023 in Rust, but only got 2 days in before I was caught up with other things, and I lost the solutions from those 2 days.
 
