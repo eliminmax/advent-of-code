@@ -6,10 +6,18 @@
 
 # Solution to AoC 2018 Day 6 Part 2
 
+from typing import NamedTuple, Self
 from collections.abc import Iterable
 import sys
 
-from advent_math import Point
+
+class Point(NamedTuple):
+    row: int
+    col: int
+
+    def manhattan_distance(self, other: Self) -> int:
+        """Calculate the taxicab distance to other"""
+        return abs(self.row - other.row) + abs(self.col - other.col)
 
 
 def total_distance(row: int, col: int, points: Iterable[Point]) -> int:

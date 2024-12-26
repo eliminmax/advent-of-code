@@ -8,10 +8,17 @@
 
 from collections import defaultdict
 from collections.abc import Iterable
-from typing import Optional
+from typing import Optional, NamedTuple, Self
 import sys
 
-from advent_math import Point
+
+class Point(NamedTuple):
+    row: int
+    col: int
+
+    def manhattan_distance(self, other: Self) -> int:
+        """Calculate the taxicab distance to other"""
+        return abs(self.row - other.row) + abs(self.col - other.col)
 
 
 def find_nearest(
