@@ -167,7 +167,7 @@ impl GameState {
 
 const SPELLS: [Spell; 5] = [
     Spell {
-        name: "Magic Missle",
+        name: "Magic Missile",
         cost: 53,
         action: SpellAction::Instant(|state: &mut GameState| state.boss_hp -= 4),
     },
