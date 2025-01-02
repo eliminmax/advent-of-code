@@ -6,7 +6,7 @@
 
 # Solution to AoC 2015 Day 19 Part 2
 # based entirely on u/askalski's insights shared in their answer, but they
-# worked it out by hand, not programatically, using a different approach based
+# worked it out by hand, not programmatically, using a different approach based
 # on the insights.
 
 # This was after days of struggling and failing to find a simple enough crash
