@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+*
+!.gitignore
+!*.*
+!part2_re_tooling
+!part2_re_tooling/*
+part2_re_tooling/re-stage-[0-4].c
