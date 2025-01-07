@@ -10,7 +10,7 @@ set -e
 template_dir="$(dirname "$(realpath "$0")")/../templates"
 
 # set year and day arguments by parsing current directory name
-eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([1-9]\?[0-9]\)$#year=\1 day=\2#')"
+eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day\([0-2][0-9]\)$#year=\1 day=\2#')"
 
 c_year="$(date +%Y)"
 c_name="$(git config user.name)"
