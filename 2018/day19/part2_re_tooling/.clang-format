@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2024-2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+#
+# generated for clang-format-16 with https://clang-format-configurator.site/
+
+---
+BasedOnStyle: Google
+AlignAfterOpenBracket: BlockIndent
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossComments: true
+  PadOperators: true
+AlignEscapedNewlines: DontAlign
+AlignTrailingComments:
+  Kind: Never
+AllowShortBlocksOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+BinPackArguments: false
+BinPackParameters: false
+BitFieldColonSpacing: After
+BreakBeforeTernaryOperators: false
+DerivePointerAlignment: false
+IncludeCategories:
+  - Regex: ^<\(std.*\|string\|inttypes\)*\.h>
+    Priority: 2
+    SortPriority: 0
+  - Regex: ^<.*\.h>
+    Priority: 1
+    SortPriority: 1
+  - Regex: '".*.h"'
+    Priority: 2
+    SortPriority: 0
+  - Regex: .*
+    Priority: 3
+    SortPriority: 0
+    CaseSensitive: false
+IndentCaseLabels: false
+IndentGotoLabels: false
+IndentWidth: 4
+InsertNewlineAtEOF: true
+InsertTrailingCommas: Wrapped
+LineEnding: LF
+PenaltyBreakBeforeFirstCallParameter: 0
+PenaltyReturnTypeOnItsOwnLine: 10000
+PointerAlignment: Right
+SeparateDefinitionBlocks: Always
+SpacesBeforeTrailingComments: 1
+TabWidth: 4
+DeriveLineEnding: false
