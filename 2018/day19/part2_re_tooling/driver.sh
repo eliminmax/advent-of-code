@@ -4,4 +4,4 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-awk -f pseudo-opcodes.awk ../input | awk -f convert-to-c.awk | clang-format-16
+awk -f pseudo-opcodes.awk ../input | awk -f convert-to-c.awk | clang-format
