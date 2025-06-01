@@ -2,6 +2,8 @@
 //
 // SPDX-License-Identifier: 0BSD
 
+// Rust 2024 edition
+
 // Solution to AoC 2018 Day 20 Part 1
 
 use std::collections::{BinaryHeap, HashMap};
