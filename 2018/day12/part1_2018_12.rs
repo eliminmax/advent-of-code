@@ -39,9 +39,9 @@ fn main() {
 
     assert!(!rules.get(&[false; 5]).unwrap_or(&false));
 
-    for gen in 1..=GENERATIONS {
+    for generation in 1..=GENERATIONS {
         let old_state = state.clone();
-        for i in (PADDING - gen)..(PADDING + start_len + gen) {
+        for i in (PADDING - generation)..(PADDING + start_len + generation) {
             state[i] = *rules.get(&old_state[i - 2..=i + 2]).unwrap_or(&false);
         }
     }

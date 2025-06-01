@@ -59,9 +59,9 @@ fn main() {
     let mut differences: VecDeque<isize> = VecDeque::new();
     let mut prev_score = score(&state[..]);
     let mut sim_stop: isize = 0;
-    'sim_loop: for gen in 1..=TEST_GENERATIONS {
+    'sim_loop: for generation in 1..=TEST_GENERATIONS {
         let old_state = state.clone();
-        for i in (PADDING - gen)..(PADDING + start_len + gen) {
+        for i in (PADDING - generation)..(PADDING + start_len + generation) {
             state[i] = *rules.get(&old_state[i - 2..=i + 2]).unwrap_or(&false);
         }
         let new_score = score(&state[..]);
@@ -70,12 +70,12 @@ fn main() {
         while differences.len() == 5 {
             let test_val = differences.pop_front().unwrap_or_else(|| unreachable!());
             if differences.iter().all(|i| *i == test_val) {
-                sim_stop = gen as isize;
+                sim_stop = generation as isize;
                 break 'sim_loop;
             }
         }
         prev_score = new_score;
-        sim_stop = gen as isize;
+        sim_stop = generation as isize;
     }
     assert!(differences[0] >= 0);
     let base_score = score(&state[..]);
