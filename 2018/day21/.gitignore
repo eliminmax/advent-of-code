@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+*
+!.gitignore
+!*.rs
+!part1_2018_21.md
+!part1_re_tooling
+!part1_re_tooling/*
+part1_re_tooling/stage[0-9]*
