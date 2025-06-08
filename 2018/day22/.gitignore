@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+*
+!.gitignore
+!*.rs
+constants.rs
+!preprocess.awk
