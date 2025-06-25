@@ -1,9 +1,8 @@
 // SPDX-FileCopyrightText: 2024 - 2025 Eli Array Minkoff
-// SPDX-FileCopyrightText: 2025 Eli Array Minkoff
 //
 // SPDX-License-Identifier: 0BSD
 
-// Solution to AoC 2019 Day 17 Part 2
+// Solution to AoC 2019 Day 9 Part 2
 
 use std::collections::HashMap;
 use std::num::TryFromIntError;

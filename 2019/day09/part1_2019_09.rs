@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: 0BSD
 
-// Solution to AoC 2019 Day 17 Part 1
+// Solution to AoC 2019 Day 9 Part 1
 
 use std::collections::HashMap;
 use std::num::TryFromIntError;
