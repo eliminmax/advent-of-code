@@ -62,7 +62,6 @@ fn render(screen: &Screen, score: i64) {
         y_max = y_max.max(y);
     }
     print!("\x1b[H\x1b[1m"); // move to top corner and bold input
-    
 
     for y in y_min..=y_max {
         for x in x_min..=x_max {
