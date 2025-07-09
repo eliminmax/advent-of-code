@@ -4,4 +4,4 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-exec clippy-driver --edition 2024 "$@"
+exec clippy-driver --cfg aoc_direct --edition 2024 "$@"
