@@ -8,6 +8,7 @@
 aoc_setup () {
 
     cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" || return 1
+    unset OLDPWD
 
     local pylibdir="$PWD/pylib"
     local mypystubdir="$pylibdir/.mypy_stubs"
