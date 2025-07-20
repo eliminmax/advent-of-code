@@ -88,7 +88,7 @@ pub enum Register {
 // OR T J
 // AND D J
 //
-// I validated that the progam matched the expression with a springscript emulator of mine, but it
+// I validated that the program matched the expression with a springscript emulator of mine, but it
 // fell in the first hole in arrangement 3 nonetheless
 //
 // Back to the drawing board:

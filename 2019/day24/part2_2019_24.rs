@@ -67,7 +67,7 @@ impl StandardCoord {
     const SOUTHERN_EDGE: [Self; 5] = [Self::EA, Self::EB, Self::EC, Self::ED, Self::EE];
     const EASTERN_EDGE: [Self; 5] = [Self::AE, Self::BE, Self::CE, Self::DE, Self::EE];
 
-    const fn neigbors(self) -> [DirectionalNeighborhood; 4] {
+    const fn neighbors(self) -> [DirectionalNeighborhood; 4] {
         use std::hint::unreachable_unchecked;
         use std::mem::transmute;
         use DirectionalNeighborhood as DN;
@@ -133,7 +133,7 @@ struct Position {
 impl Position {
     fn neighbors(&self) -> impl Iterator<Item = Self> {
         let mut ret = Vec::new();
-        for neighbor in self.location.neigbors() {
+        for neighbor in self.location.neighbors() {
             match neighbor {
                 DirectionalNeighborhood::Same(location) => ret.push(Self { location, ..*self }),
                 DirectionalNeighborhood::Out(location) => ret.push(Self {
