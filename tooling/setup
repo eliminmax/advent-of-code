@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# SPDX-FileCopyrightText: 2024 Eli Array Minkoff
+# SPDX-FileCopyrightText: 2024 - 2025 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
 
@@ -42,11 +42,13 @@ aoc_setup () {
 
 aoc_setup
 
-tmux_status="$(byobu-tmux -S tooling/byobusock ls 2>&1)"
+socket_path="/run/user/$(id -u)/aoc_byobusock"
 
-if [ "$tmux_status" = 'no server running on tooling/byobusock' ]; then
-    exec byobu-tmux -S tooling/byobusock
+tmux_status="$(byobu-tmux -S "$socket_path" ls 2>&1)"
+
+if [ "$tmux_status" = "no server running on $socket_path" ]; then
+    exec byobu-tmux -S "$socket_path"
 else
-    exec byobu-tmux -S tooling/byobusock attach
+    exec byobu-tmux -S "$socket_path" attach
 fi
 # vi: ft=bash
