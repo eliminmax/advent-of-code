@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
             stderr,
             "Failed to open file \"%s\": %s.\n",
             filename,
-            strerror(errno),
+            strerror(errno)
         );
         return EXIT_FAILURE;  
     }
