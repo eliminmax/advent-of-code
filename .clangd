@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+---
+CompileFlags:
+  Add:
+    # strict warnings, to help ensure C23 compliance
+    - "-Wall"
+    - "-Wextra"
+    - "-Wpedantic"
+    - "-xc"
+    - "-std=c23"
+    # Warn on reserved identifiers
+    - "-Wreserved-identifier"
+    - "-Wreserved-macro-identifier"
+  Compiler: clang
