@@ -1,0 +1,23 @@
+#!/usr/bin/env -S awk -f
+
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+$2" "$3" "$4 == "Solution to AoC" {
+    print "year="$5
+    print "day="$7
+    printf "day_padded=%02d\n", $7
+    print "part="$9
+    ++matches
+}
+
+END {
+    if (matches == 0) {
+        print "printf 'No matches\\n' >&2"
+        print "exit 1"
+    } else if (matches > 1) {
+        print "'" matches " matches\\n' >&2"
+        print "exit 1"
+    }
+}

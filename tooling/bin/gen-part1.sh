@@ -53,3 +53,39 @@ else
     printf '*\n!.gitignore\n!*.%s\n' "$extension" > .gitignore
     reuse annotate -l 0BSD -y "$c_year" -c "$c_name" .gitignore
 fi
+
+if [ "$extension" = 'rs' ]; then
+    cargo_main="$HOME/Desktop/aoc-rs/src/main.rs"
+    if ! [ -e "$cargo_main" ]; then
+        printf 'Note: missing out-of-tree workspace crate.\n' >&2
+    else
+        # This is messy and ugly. It uses awk to extract variables from the
+        # solution comment and turn them into shell variable assignments.
+        # Specifically, it sets year, day, and part to the appropriate numbers,
+        # and day_padded to the day 0-padded to be a 2-digit number.
+        #
+        # If it matches zero or more than 1, it emits a `printf` command at the
+        # end to warn the user, followed by `exit 1`, so nothing past this
+        # will run on error
+        eval "$(parse_sol_comment "$cargo_main")"
+        # shellcheck disable=SC2154 # variables set by parse_sol_comment
+        expected_file="part${part}_${year}_$day_padded.rs"
+        expected_file="$AOC_GIT_DIR/$year/day$day_padded/$expected_file"
+        if [ ! -e "$expected_file" ]; then
+            printf '%s has not been copied over to %s - not clobbering\n' >&2 \
+                "$cargo_main" \
+                "$expected_file"
+            exit 1
+        elif ! diff -q "$cargo_main" "$expected_file"; then
+            printf '%s differs from %s - not clobbering.\n' >&2 \
+                "$cargo_main" \
+                "$expected_file"
+            exit 1
+        fi
+        cp input "$HOME/Desktop/aoc-rs/input"
+        # clear out any old sample inputs
+        find "$HOME/Desktop/aoc-rs" -name 'sample_input*' -exec rm -i {} +
+        (cd "$HOME/Desktop/aoc-rs" && cargo clean --quiet)
+        cp "$outname" "$cargo_main"
+    fi
+fi

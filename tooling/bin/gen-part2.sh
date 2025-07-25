@@ -45,3 +45,15 @@ fi
 if [ "$(head -c2 "$outname")" = '#!' ]; then
     chmod +x "$outname"
 fi
+
+if [ "$extension" = 'rs' ]; then
+    cargo_main="$HOME/Desktop/aoc-rs/src/main.rs"
+    if [ -e "$cargo_main" ]; then
+        # Because of `set -e`, if there's a difference, it will stop here.
+        #
+        # Because diff -q still reports when files differ, printing an error is
+        # redundant.
+        diff -q "$cargo_main" "$part1_name"
+        cp "$outname" "$cargo_main"
+    fi
+fi
