@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# SPDX-FileCopyrightText: 2024 Eli Array Minkoff
+# SPDX-FileCopyrightText: 2024 - 2025 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
 
@@ -21,6 +21,7 @@ case "${1:-rust}" in
     jq) extension="jq" ;;
 esac
 
+# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
 part1_name="part1_${year}_${day}.${extension}"
 if ! [ -e "$part1_name" ]; then
     printf 'File %s does not exist!\n' "$part1_name" >&2
