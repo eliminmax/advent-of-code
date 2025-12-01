@@ -7,3 +7,4 @@ input
 test_*
 result[12]
 __pycache__/
+/.cookie
