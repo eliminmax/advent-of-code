@@ -14,5 +14,5 @@ At the start of my efforts, I primarily used Python for my solutions, or occasio
 
 Almost every solution is in a single language, in a standalone source file, with dependencies only on its language's standard library and occasionally other source files in the same directory.
 
-Most of the solutions are in Rust, though are build without cargo.
+Most of the solutions are in Rust, though are built without cargo.
 Due to issues figuring out how to get rustaceanvim and rust-analyzer not to freak out with standalone files, I develop Rust solutions out-of-tree in a cargo-managed crate called `aoc-rs`, with `main.rs` copied from the Rust source template in `./tooling/templates/`, then copy it back in tree once it works. Once in tree, I compile it with `./tooling/templates/aoc-rustc`, to pass a conditional compilation flag in case anything needs to be build or linked differently.
