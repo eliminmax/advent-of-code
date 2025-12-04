@@ -10,11 +10,12 @@ set -e
 template_dir="$(dirname "$(realpath "$0")")/../templates"
 
 # set year and day arguments by parsing current directory name
-eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day\([0-2][0-9]\)$#year=\1 day=\2#')"
+eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([12]\?[0-9]\)$#year=\1 day=\2#')"
 
 c_year="$(date +%Y)"
 c_name="$(git config user.name)"
 
+# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
 get_input.sh "$year" "$day"
 
 case "${1:-rust}" in
@@ -26,7 +27,7 @@ case "${1:-rust}" in
 esac
 
 # shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-outname="part1_${year}_${day}.${extension}"
+outname="$(printf 'part1_%04d_%02d.%s' "$year" "$day" "$extension")"
 if [ -e "$outname" ]; then
     printf 'Refusing to clobber existing file %s!\n' "$outname" >&2
     exit 1
@@ -38,7 +39,12 @@ if ! [ -e "$template_file" ]; then
     exit 1
 fi
 
-sed "s/--solution-comment--/Solution to AoC $year Day $day Part 1/" \
+solution_comment="$(
+    # shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
+    printf 'Solution to AoC %04d Day %02d Part 1' "$year" "$day"
+)"
+
+sed "s/--solution-comment--/$solution_comment/" \
     "$template_file" > "$outname"
 
 if [ "$extension" = 'jq' ]; then

@@ -8,7 +8,7 @@
 set -e
 
 # set year and day arguments by parsing current directory name
-eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day\([0-2]\?[0-9]\)$#year=\1 day=\2#')"
+eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([12]\?[0-9]\)$#year=\1 day=\2#')"
 
 c_year="$(date +%Y)"
 c_name="$(git config user.name)"
@@ -22,13 +22,15 @@ case "${1:-rust}" in
 esac
 
 # shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-part1_name="part1_${year}_${day}.${extension}"
+part1_name="$(printf 'part1_%04d_%02d.%s' "$year" "$day" "$extension")"
 if ! [ -e "$part1_name" ]; then
     printf 'File %s does not exist!\n' "$part1_name" >&2
     exit 1
 fi
 
-outname="part2_${year}_${day}.${extension}"
+# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
+outname="$(printf 'part2_%04d_%02d.%s' "$year" "$day" "$extension")"
+
 if [ -e "$outname" ]; then
     printf 'Refusing to clobber existing file %s!\n' "$outname" >&2
     exit 1
