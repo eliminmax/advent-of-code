@@ -4,4 +4,4 @@
 #
 # SPDX-License-Identifier: 0BSD
 
-exec rustc --cfg aoc_direct --edition 2024 -O "$@"
+exec rustc --cfg aoc_direct --edition 2024 -C target-cpu=native -O "$@"
