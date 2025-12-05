@@ -21,4 +21,16 @@ fi
 
 url="$(printf 'https://adventofcode.com/%04d/day/%d/input' "$year" "$day")"
 
-curl --output "$target_path" --cookie "$cookie" "$url"
+email="$(git config get user.email)"
+if [ -z "$email" ]; then
+    printf 'Could not get email from git config.\n' >&2
+    printf 'Must include contact information in request header.\n' >&2
+    printf 'See https://reddit.com/r/adventofcode/wiki/faqs/automation\n' >&2
+    exit 1
+fi
+user="$(git config get user.name)"
+
+user_id="${user}${user:+ }<$email>"
+ua="get_input.sh from github.com/eliminmax/advent-of-code, user: $user_id"
+
+curl --user-agent "$ua" --output "$target_path" --cookie "$cookie" "$url"
