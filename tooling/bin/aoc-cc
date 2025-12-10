@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# SPDX-FileCopyrightText: 2025 Eli Array Minkoff
+#
+# SPDX-License-Identifier: 0BSD
+
+exec clang -Wall -Wextra -std=gnu23 -Wno-nullability-extension \
+    -Wreserved-identifier -Wreserved-macro-identifier -g3 "$@"
