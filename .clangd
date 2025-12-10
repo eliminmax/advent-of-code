@@ -4,13 +4,23 @@
 ---
 CompileFlags:
   Add:
-    # strict warnings, to help ensure C23 compliance
     - "-Wall"
     - "-Wextra"
-    - "-Wpedantic"
     - "-xc"
-    - "-std=c23"
+    - "-std=gnu23"
+    - "-Wno-nullability-extension"
     # Warn on reserved identifiers
     - "-Wreserved-identifier"
     - "-Wreserved-macro-identifier"
   Compiler: clang
+
+---
+
+If:
+  PathMatch: .*\.h
+CompileFlags:
+  Remove:
+    - "-xc"
+  Add:
+    - "-xc-header"
+
