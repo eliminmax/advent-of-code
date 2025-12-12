@@ -22,7 +22,9 @@ fn main() {
             .into_iter()
             .map(|mut problem| {
                 let op = problem.pop().unwrap();
-                let nums = problem.into_iter().map(|i| i.parse::<u64>().expect("valid input"));
+                let nums = problem
+                    .into_iter()
+                    .map(|i| i.parse::<u64>().expect("valid input"));
                 match op {
                     "*" => nums.product::<u64>(),
                     "+" => nums.sum::<u64>(),

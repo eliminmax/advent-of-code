@@ -129,9 +129,7 @@ impl Interpreter {
 
         /// Shorthand to get the `$n`th parameter's value
         macro_rules! select_by_mode {
-            ($n: literal) => {{
-                self.param_val(self.index + $n, modes[$n - 1])?
-            }};
+            ($n: literal) => {{ self.param_val(self.index + $n, modes[$n - 1])? }};
         }
 
         /// Resolves to the destination address pointed to by the `$n`th parameter
@@ -144,7 +142,7 @@ impl Interpreter {
                     ParamMode::Immediate => {
                         return Err(ErrorState::WriteToImmediate(
                             self.code.get(&(self.index + $n)).copied().unwrap_or(0),
-                        ))
+                        ));
                     }
                     ParamMode::Relative => u64::try_from(
                         self.rel_offset + *self.code.entry(self.index + $n).or_insert(0),
@@ -166,13 +164,7 @@ impl Interpreter {
 
         /// A comparison instruction
         macro_rules! comp {
-            ($op: expr) => {{
-                if $op {
-                    1
-                } else {
-                    0
-                }
-            }};
+            ($op: expr) => {{ if $op { 1 } else { 0 } }};
         }
 
         macro_rules! report_op {
@@ -345,7 +337,6 @@ impl Interpreter {
             }
         }
     }
-
 }
 
 #[cfg(test)]
@@ -358,7 +349,9 @@ mod tests {
             109, 1, 204, -1, 1001, 100, 1, 100, 1008, 100, 16, 101, 1006, 101, 0, 99,
         ];
         let mut interpreter = Interpreter::new(quine_code.clone());
-        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else { panic!() };
+        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else {
+            panic!()
+        };
         assert_eq!(quine_code, outputs);
     }
 
@@ -366,7 +359,9 @@ mod tests {
     #[test]
     fn output_sixteen_digit() {
         let mut interpreter = Interpreter::new([1102, 34915192, 34915192, 7, 4, 7, 99, 0]);
-        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else { panic!() };
+        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else {
+            panic!()
+        };
         assert_eq!(outputs.len(), 1);
         assert_eq!(outputs[0].to_string().len(), 16);
     }
@@ -375,7 +370,9 @@ mod tests {
     #[test]
     fn large_number() {
         let mut interpreter = Interpreter::new([104, 1125899906842624, 99]);
-        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else { panic!() };
+        let (outputs, State::Halted) = interpreter.run_through_inputs(Vec::new()).unwrap() else {
+            panic!()
+        };
         assert_eq!(outputs, vec![1125899906842624]);
     }
 

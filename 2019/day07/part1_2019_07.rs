@@ -165,11 +165,12 @@ fn main() {
     for permutation in heap_permutations(&mut [0, 1, 2, 3, 4]).into_iter() {
         let mut signal = 0i32;
         for amp in permutation.iter() {
-            let output =
-                run_with_inputs(&code, vec![*amp, signal].into_iter()).unwrap_or_else(|e| match e {
+            let output = run_with_inputs(&code, vec![*amp, signal].into_iter()).unwrap_or_else(
+                |e| match e {
                     ErrorState::UnrecognizedOpcode(i) => panic!("Unrecognized opcode: {}", i),
                     ErrorState::MissingInput => panic!("Missing input!"),
-                });
+                },
+            );
             if output.len() != 1 {
                 panic!("Expected output of length 1, got {}", output.len());
             }

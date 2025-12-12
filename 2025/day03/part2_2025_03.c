@@ -5,10 +5,10 @@
  */
 
 #include <assert.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 /* Solution to AoC 2025 Day 03 Part 2 */
 
@@ -40,7 +40,7 @@ static unsigned long long max_joltage(const char *bank) {
 }
 
 int main(int argc, char *argv[]) {
-    const char *filename = argc > 1? argv[1] : "input"; 
+    const char *filename = argc > 1 ? argv[1] : "input";
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         fprintf(
@@ -49,14 +49,14 @@ int main(int argc, char *argv[]) {
             filename,
             strerror(errno)
         );
-        return EXIT_FAILURE;  
+        return EXIT_FAILURE;
     }
     // actual input lines are 100 long each. This gives enough room for the
     // newline and null terminator when calling `fgets`.
     char line_buf[102];
     unsigned long long total = 0;
 
-    while(fgets(line_buf, 102, fp)) {
+    while (fgets(line_buf, 102, fp)) {
         char *ptr = strchr(line_buf, '\n');
         if (ptr) *ptr = '\0';
         total += max_joltage(line_buf);

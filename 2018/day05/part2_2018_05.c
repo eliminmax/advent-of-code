@@ -104,7 +104,8 @@ int main(int argc, char *argv[]) {
     const char alphabet[27] = "abcdefghijklmnopqrstuvwxyz";
     size_t smallest = SIZE_MAX;
     for (int i = 0; i < 26; i++) {
-        size_t size_without_c = size_without(alphabet[i], polymer, copy_buf, len);
+        size_t size_without_c =
+            size_without(alphabet[i], polymer, copy_buf, len);
         if (size_without_c < smallest) smallest = size_without_c;
     }
     printf("%ju\n", (uintmax_t)smallest);

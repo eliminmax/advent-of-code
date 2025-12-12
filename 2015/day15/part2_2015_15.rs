@@ -58,7 +58,11 @@ impl FromStr for Ingredient {
 }
 
 fn score(ingredients: &[Ingredient; 4], amounts: [i32; 4]) -> i32 {
-    if (0..4).map(|i| ingredients[i].calories * amounts[i]).sum::<i32>() != 500 {
+    if (0..4)
+        .map(|i| ingredients[i].calories * amounts[i])
+        .sum::<i32>()
+        != 500
+    {
         return 0;
     }
 
@@ -69,7 +73,7 @@ fn score(ingredients: &[Ingredient; 4], amounts: [i32; 4]) -> i32 {
                 $prop += ingredients[i].$prop * amounts[i];
             }
             let $prop = $prop.max(0);
-        }
+        };
     }
     tally_property!(capacity);
     tally_property!(durability);

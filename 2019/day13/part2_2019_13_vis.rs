@@ -59,7 +59,7 @@ fn render(x: i64, y: i64, tile: Tile) {
 fn main() {
     use std::env::args;
     use std::fs::read_to_string;
-    use std::io::{stdout, Write};
+    use std::io::{Write, stdout};
     let input =
         read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");
     let mut interpreter =

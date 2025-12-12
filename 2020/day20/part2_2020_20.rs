@@ -43,7 +43,7 @@ impl Picture {
         self.flip();
     }
     const MONSTER_COORD_OFFSETS: [(usize, usize); 15] = {
-        use std::mem::{transmute, MaybeUninit};
+        use std::mem::{MaybeUninit, transmute};
         let pattern = [
             b"                  # ",
             b"#    ##    ##    ###",
@@ -136,9 +136,10 @@ impl Picture {
 
             macro_rules! check_pos {
                 (n:($x: expr, $y: expr), tile.$tile_edge: ident(), n.$other_edge: ident()) => {
-                    assert!(grid
-                        .get(&($x, $y))
-                        .is_none_or(|t| t.$other_edge() == tile.$tile_edge()));
+                    assert!(
+                        grid.get(&($x, $y))
+                            .is_none_or(|t| t.$other_edge() == tile.$tile_edge())
+                    );
                 };
             }
 
@@ -264,9 +265,9 @@ fn main() {
             .trim() // trim to avoid trying to parse the empty space at the end as a tile
             .split("\n\n")
             .map(Tile::lazy_panicky_parse),
-    ).into_count();
+    )
+    .into_count();
     println!("{count}");
-
 }
 
 impl Tile {

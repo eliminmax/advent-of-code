@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: 0BSD
 
-
 //! Generated with the following python script, which uses Dijkstra's algorithm alongside sympy and
 //! the 3d rotation matrices from https://stackoverflow.com/a/14609567/25639450
 //! ```python
@@ -10,43 +9,43 @@
 //! from collections.abc import Sequence
 //! from sympy import symbols, pi, cos, sin
 //! from sympy.core.symbol import Symbol
-//! 
-//! 
+//!
+//!
 //! class Rotation(NamedTuple):
 //!     x: Symbol
 //!     y: Symbol
 //!     z: Symbol
-//! 
-//! 
+//!
+//!
 //! COS = cos(pi / 2)
 //! SIN = sin(pi / 2)
-//! 
+//!
 //! rotators: Sequence[Callable[[Rotation], Rotation]] = (
 //!     lambda p: Rotation(p.x, p.y * COS - p.z * SIN, p.y * SIN + p.z * COS),
 //!     lambda p: Rotation(p.x * COS + p.z * SIN, p.y, -p.x * SIN + p.z * COS),
 //!     lambda p: Rotation(p.x, p.y * COS - p.z * SIN, p.y * SIN + p.z * COS)
 //! )
-//! 
-//! 
+//!
+//!
 //! X, Y, Z = symbols("x y z")
-//! 
-//! 
+//!
+//!
 //! distances: dict[Rotation, int] = {Rotation(X, Y, Z): 0}
 //! queue: list[tuple[int, Rotation]] = [(0, Rotation(X, Y, Z))]
-//! 
+//!
 //! while queue:
 //!     cost, rotation = queue.pop()
 //!     if rotation in distances and distances[rotation] < cost:
 //!         continue
 //!     reachable = [rot(rotation) for rot in rotators]
 //!     next_cost = cost + 1
-//! 
+//!
 //!     for next_rot in reachable:
 //!         if next_rot not in distances or distances[next_rot] > next_cost:
 //!             queue.append((next_cost, next_rot))
 //!             distances[next_rot] = next_cost
 //!     queue.sort(key=lambda e: e[0], reverse=True)
-//! 
+//!
 //! print("pub(super) const ROTATORS: [fn(Position) -> Position; 24] = [")
 //! for x, y, z in distances.keys():
 //!     c = "|Position { x, y, z }| Position { " + f"x: {x}, y: {y}, z: {z}" + " }"

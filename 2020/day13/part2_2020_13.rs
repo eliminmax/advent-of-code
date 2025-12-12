@@ -48,5 +48,3 @@ fn main() {
     assert!(lines.next().is_none());
     println!("{}", crt(&bus_times).unwrap());
 }
-
-

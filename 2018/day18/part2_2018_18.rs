@@ -77,7 +77,7 @@ impl LumberGrid {
                 return;
             }
             if let Some(cycle_start) = seen_states.insert(next_gen, generation) {
-                break (cycle_start, generation - cycle_start );
+                break (cycle_start, generation - cycle_start);
             }
         };
         let remaining = (generations - cycle_start) % cycle_size;

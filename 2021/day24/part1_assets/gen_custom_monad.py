@@ -36,10 +36,7 @@ block_fns = "\n".join(
     for i, (p0, p1, p2) in enumerate(block_nums)
 )
 
-calls = "\n".join(
-    f"        z = block{i}(digits[{i}], z);"
-    for i in range(14)
-)
+calls = "\n".join(f"        z = block{i}(digits[{i}], z);" for i in range(14))
 
 print(
     f"""

@@ -49,7 +49,10 @@ fn main() {
         let mut is_uniq: HashMap<Quant3D, bool> = HashMap::new();
         particles.iter_mut().for_each(|part| {
             part.update();
-            is_uniq.entry(part.p).and_modify(|v| *v = false).or_insert(true);
+            is_uniq
+                .entry(part.p)
+                .and_modify(|v| *v = false)
+                .or_insert(true);
         });
         particles.retain(|part| is_uniq[&part.p]);
         order = order_of(&particles[..]);

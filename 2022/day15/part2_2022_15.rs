@@ -103,12 +103,16 @@ fn main() {
         .collect();
     for y in 0..=4000000 {
         let spans = normalize_spans(sensors.iter().flat_map(|s| s.span_at(y)).collect());
-        if *spans != [Span {start: 0, end: 4000000 }][..] {
+        if *spans
+            != [Span {
+                start: 0,
+                end: 4000000,
+            }][..]
+        {
             assert_eq!(spans.len(), 2);
             assert_eq!(spans[0].end + 2, spans[1].start);
             println!("{}", (spans[0].end + 1) * 4000000 + y);
             break;
         }
     }
-
 }

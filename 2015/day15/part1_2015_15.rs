@@ -65,7 +65,7 @@ fn score(ingredients: &[Ingredient; 4], amounts: [i32; 4]) -> i32 {
                 $prop += ingredients[i].$prop * amounts[i];
             }
             let $prop = $prop.max(0);
-        }
+        };
     }
     tally_property!(capacity);
     tally_property!(durability);

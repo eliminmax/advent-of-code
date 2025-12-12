@@ -27,7 +27,11 @@ fn count_paths(links: impl IntoIterator<Item = u8>) -> u64 {
         joltages.insert(key, Some(possible_paths));
     }
 
-    joltages.get(&max_key).copied().flatten().unwrap_or_default()
+    joltages
+        .get(&max_key)
+        .copied()
+        .flatten()
+        .unwrap_or_default()
 }
 
 fn main() {

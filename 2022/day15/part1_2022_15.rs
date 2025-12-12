@@ -62,8 +62,12 @@ fn parse_input_line<const Y: i64>(line: &str) -> Option<Span> {
     } else {
         let mut start = sensor.0 - remaining_distance;
         let mut end = sensor.0 + remaining_distance;
-        if (start, Y) == beacon { start += 1; }
-        if (end, Y) == beacon { end -= 1; }
+        if (start, Y) == beacon {
+            start += 1;
+        }
+        if (end, Y) == beacon {
+            end -= 1;
+        }
         Some(Span { start, end })
     }
 }
@@ -73,6 +77,11 @@ fn main() {
     use std::fs::read_to_string;
     let input =
         read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");
-    let spans = normalize_spans(input.lines().flat_map(parse_input_line::<2000000>).collect());
+    let spans = normalize_spans(
+        input
+            .lines()
+            .flat_map(parse_input_line::<2000000>)
+            .collect(),
+    );
     println!("{}", spans.iter().map(Span::len).sum::<u64>());
 }

@@ -70,7 +70,20 @@ impl BotSystem {
                 self.bots[bot_num].items.push(val);
             }
             // not checking every single word for this one
-            ["bot", b, _, _, _, low_dtype, low_dn, _, _, _, high_dtype, high_dn] => {
+            [
+                "bot",
+                b,
+                _,
+                _,
+                _,
+                low_dtype,
+                low_dn,
+                _,
+                _,
+                _,
+                high_dtype,
+                high_dn,
+            ] => {
                 let bot_num: usize = b.parse()?;
                 let low: TransferTarget = (*low_dtype, *low_dn).try_into()?;
                 let high: TransferTarget = (*high_dtype, *high_dn).try_into()?;
@@ -89,11 +102,7 @@ impl BotSystem {
             .enumerate()
             .filter_map(
                 |(id, bot)| {
-                    if bot.items.len() == 2 {
-                        Some(id)
-                    } else {
-                        None
-                    }
+                    if bot.items.len() == 2 { Some(id) } else { None }
                 },
             )
             .collect();

@@ -68,9 +68,9 @@ impl StandardCoord {
     const EASTERN_EDGE: [Self; 5] = [Self::AE, Self::BE, Self::CE, Self::DE, Self::EE];
 
     const fn neighbors(self) -> [DirectionalNeighborhood; 4] {
+        use DirectionalNeighborhood as DN;
         use std::hint::unreachable_unchecked;
         use std::mem::transmute;
-        use DirectionalNeighborhood as DN;
         let n = match self as i8 {
             i8::MIN..=-1 | 12 | 25..=i8::MAX => unsafe { unreachable_unchecked() },
             0..=4 => DN::Out(Self::BC),

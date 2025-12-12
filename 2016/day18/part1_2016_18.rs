@@ -26,15 +26,17 @@ fn main() {
     use std::fs::read_to_string;
     let input = read_to_string(args().nth(1).unwrap_or(String::from("input")))
         .expect("Failed to read file!");
-    let mut rows: Vec<Vec<Tile>> = vec![input
-        .trim()
-        .chars()
-        .map(|c| match c {
-            '.' => Tile::Safe,
-            '^' => Tile::Trapped,
-            _ => panic!("invalid tile character: {:?}", c),
-        })
-        .collect()];
+    let mut rows: Vec<Vec<Tile>> = vec![
+        input
+            .trim()
+            .chars()
+            .map(|c| match c {
+                '.' => Tile::Safe,
+                '^' => Tile::Trapped,
+                _ => panic!("invalid tile character: {:?}", c),
+            })
+            .collect(),
+    ];
     while rows.len() < 40 {
         rows.push(row_after(
             &rows

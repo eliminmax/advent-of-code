@@ -214,12 +214,14 @@ impl WireKit {
         macro_rules! mask {
             ($takefrom: ident, $numstr: ident) => {{
                 let mask_by = $numstr.chars().skip(1).collect::<String>();
-                let mask_by = mask_by.parse::<u64>().map_err(|_| WireKitError::Unparsable)?;
+                let mask_by = mask_by
+                    .parse::<u64>()
+                    .map_err(|_| WireKitError::Unparsable)?;
                 let mask = 1u64 << mask_by;
                 let bit = ($takefrom & mask) >> mask_by;
                 $takefrom &= !mask;
                 bit == 1
-            }}
+            }};
         }
         for (k, v) in self.iter_mut() {
             if k.starts_with('x') {

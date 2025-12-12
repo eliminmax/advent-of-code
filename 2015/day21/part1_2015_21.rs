@@ -159,9 +159,7 @@ impl std::str::FromStr for BossStats {
 /// Return Some(cost) if inventory would result in victory, otherwise None
 fn test_inventory(boss_stats: &BossStats, inventory: Vec<GameItem>) -> Option<i16> {
     macro_rules! sum_stat {
-        ($stat: ident) => {{
-            inventory.iter().map(|i| i.$stat).sum::<i16>()
-        }};
+        ($stat: ident) => {{ inventory.iter().map(|i| i.$stat).sum::<i16>() }};
     }
     let mut boss_hp = boss_stats.hp;
     let mut player_hp = 100_i16;

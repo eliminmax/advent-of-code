@@ -8,7 +8,6 @@ mod dijkstra;
 
 use dijkstra::dijkstra;
 
-
 static GRID: [[u8; 500]; 500] = const {
     let template: [[u8; 100]; 100] = {
         #[cfg(aoc_direct)]

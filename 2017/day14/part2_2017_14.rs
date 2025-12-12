@@ -27,7 +27,7 @@ impl Location {
         .into_iter()
         .filter_map(|i| match i {
             Some((r, c)) if r.max(c) < 128 => Some(Location(r, c)),
-            _ => None
+            _ => None,
         })
     }
 }

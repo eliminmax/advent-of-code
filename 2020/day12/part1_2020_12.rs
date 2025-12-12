@@ -61,7 +61,6 @@ struct Ship {
 }
 
 impl Ship {
-
     const fn run_move(&mut self, ship_move: ShipMovement) {
         match ship_move {
             ShipMovement::North(i) => self.row -= i.get() as i32,

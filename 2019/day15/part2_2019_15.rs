@@ -139,10 +139,14 @@ fn dijkstra_score(map: &HashMap<Location, RoomType>, start: Location) -> HashMap
 fn find_max_distance(map: HashMap<Location, RoomType>) -> u32 {
     let distances_from_start = dijkstra_score(&map, Location { x: 0, y: 0 });
 
-    let oxy_location = map.iter()
+    let oxy_location = map
+        .iter()
         .filter_map(|(l, r)| if *r == RoomType::Oxy { Some(*l) } else { None })
         .min_by_key(|l| distances_from_start[l])
         .unwrap();
 
-    dijkstra_score(&map, oxy_location).into_values().max().unwrap_or_default()
+    dijkstra_score(&map, oxy_location)
+        .into_values()
+        .max()
+        .unwrap_or_default()
 }

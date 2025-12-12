@@ -355,9 +355,7 @@ impl Interpreter<'_> {
 
         /// Shorthand to get the `$n`th parameter's value
         macro_rules! select_by_mode {
-            ($n: literal) => {{
-                self.param_val(self.index + $n, modes[$n - 1])?
-            }};
+            ($n: literal) => {{ self.param_val(self.index + $n, modes[$n - 1])? }};
         }
 
         /// Resolves to the destination address pointed to by the `$n`th parameter
@@ -366,7 +364,7 @@ impl Interpreter<'_> {
                 match modes[$n - 1] {
                     ParamMode::Positional => u64::try_from(self.code.get(self.index + $n))?,
                     ParamMode::Immediate => {
-                        return Err(ErrorState::WriteToImmediate(self.code.get(self.index + $n)))
+                        return Err(ErrorState::WriteToImmediate(self.code.get(self.index + $n)));
                     }
                     ParamMode::Relative => {
                         u64::try_from(self.rel_offset + self.code.get(self.index + $n))?
@@ -385,13 +383,7 @@ impl Interpreter<'_> {
 
         /// A comparison instruction
         macro_rules! comp {
-            ($op: expr) => {{
-                if $op {
-                    1
-                } else {
-                    0
-                }
-            }};
+            ($op: expr) => {{ if $op { 1 } else { 0 } }};
         }
 
         macro_rules! report_op {
@@ -584,10 +576,12 @@ impl Interpreter<'_> {
     /// Not expected to be the most robust thing out there, and panics on I/O errors and Intcode
     /// errors
     pub fn ascii_interactive(&mut self) {
-        fn get_line() -> impl Iterator<Item=i64> {
+        fn get_line() -> impl Iterator<Item = i64> {
             use std::io::stdin;
             let mut buf = String::new();
-            stdin().read_line(&mut buf).expect("failed to read from stdin");
+            stdin()
+                .read_line(&mut buf)
+                .expect("failed to read from stdin");
             buf.into_bytes().into_iter().map(i64::from)
         }
         fn print_output(output: Vec<i64>) {

@@ -41,14 +41,17 @@ fn main() {
     let mut distances = distance_str.split_whitespace().skip(1);
     println!(
         "{}",
-        times.map(|ms| Race {
-            ms: u32::from_str(ms).expect("Failed to parse time as u64"),
-            dist: u32::from_str(
-                distances
-                    .next()
-                    .expect("Found a time without an associated distance"),
-            )
-            .expect("Failed to parse distance as u64"),
-        }).map(get_win_margin).product::<usize>()
+        times
+            .map(|ms| Race {
+                ms: u32::from_str(ms).expect("Failed to parse time as u64"),
+                dist: u32::from_str(
+                    distances
+                        .next()
+                        .expect("Found a time without an associated distance"),
+                )
+                .expect("Failed to parse distance as u64"),
+            })
+            .map(get_win_margin)
+            .product::<usize>()
     );
 }

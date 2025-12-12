@@ -31,7 +31,12 @@ impl TuringMachine {
         self.tape.values().filter(|&v| *v).count()
     }
     fn update(&mut self) {
-        let current_state: usize = self.tape.get(&self.location).cloned().unwrap_or(false).into();
+        let current_state: usize = self
+            .tape
+            .get(&self.location)
+            .cloned()
+            .unwrap_or(false)
+            .into();
         let Rule {
             write,
             move_dir,

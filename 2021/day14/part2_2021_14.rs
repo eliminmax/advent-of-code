@@ -55,7 +55,6 @@ fn compute_memoizing<'a>(
     cache: &'a mut ChainCache,
 ) -> &'a PolymerInfo {
     if !cache.contains_key(&((a, b), rounds)) {
-
         let new_entry = {
             if rounds == 0 {
                 PolymerInfo {

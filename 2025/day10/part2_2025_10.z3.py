@@ -15,12 +15,12 @@ def min_presses(line: str) -> int:
     optimizer = z3.Optimize()
     button_vals: list[list[int]] = []
     for word in words[:-1]:
-        button_vals.append([int(i) for i in word[1:-1].split(',')])
+        button_vals.append([int(i) for i in word[1:-1].split(",")])
 
-    presses = z3.IntVector('b', len(button_vals))
+    presses = z3.IntVector("b", len(button_vals))
     optimizer.assert_exprs(*((i >= 0) for i in presses))
 
-    counter_vals: list[int] = [int(i) for i in words[-1][1:-1].split(',')]
+    counter_vals: list[int] = [int(i) for i in words[-1][1:-1].split(",")]
 
     for i, target in enumerate(counter_vals):
         relevant = (b for b, vals in zip(presses, button_vals) if i in vals)

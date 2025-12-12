@@ -46,7 +46,7 @@ impl Index<Position> for HeightMap {
     }
 }
 impl HeightMap {
-    fn contains(&self, &Position { x, y }: &Position ) -> bool {
+    fn contains(&self, &Position { x, y }: &Position) -> bool {
         x < self.cols && y < self.rows
     }
     fn shortest_path_length(&self) -> u16 {

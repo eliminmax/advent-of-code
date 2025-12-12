@@ -9,7 +9,7 @@ use std::collections::HashMap;
 struct DockAddr(u64);
 
 impl DockAddr {
-    fn with_mask(mut self, Mask { floating, ones, .. }: Mask) -> impl Iterator<Item = Self>{
+    fn with_mask(mut self, Mask { floating, ones, .. }: Mask) -> impl Iterator<Item = Self> {
         self.0 |= ones;
         self.0 &= !floating;
         let mut variants = vec![self];
@@ -17,7 +17,10 @@ impl DockAddr {
         let floating_bits: Vec<u32> = (0..36).filter(|i| floating & 1 << i != 0).collect();
 
         for bit_index in floating_bits {
-            let with_bit_set = variants.clone().into_iter().map(|Self(i)| Self(i | (1 << bit_index)));
+            let with_bit_set = variants
+                .clone()
+                .into_iter()
+                .map(|Self(i)| Self(i | (1 << bit_index)));
             variants.extend(with_bit_set);
         }
 
@@ -77,6 +80,10 @@ impl std::str::FromStr for Mask {
             }
         }
 
-        Ok(Self { floating, keep, ones })
+        Ok(Self {
+            floating,
+            keep,
+            ones,
+        })
     }
 }

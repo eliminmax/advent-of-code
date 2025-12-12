@@ -4,7 +4,7 @@
 
 // Solution to AoC 2021 Day 19 Part 1
 
-use std::collections::{VecDeque, HashSet};
+use std::collections::{HashSet, VecDeque};
 
 mod rotations;
 use rotations::ROTATORS;
@@ -156,7 +156,10 @@ fn main() {
         debug_eprintln!("\t\tQueue now has {} remaining\n", queue.len());
     }
 
-    let beacons: HashSet<Position> = aligned_scanners.into_iter().flat_map(|s| s.beacons).collect();
+    let beacons: HashSet<Position> = aligned_scanners
+        .into_iter()
+        .flat_map(|s| s.beacons)
+        .collect();
     println!("{}", beacons.len());
 }
 

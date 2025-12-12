@@ -52,7 +52,19 @@ impl FromStr for ArcadeMachine {
         }
         let words: Vec<&str> = s.split_ascii_whitespace().collect();
         match words.as_slice() {
-            ["Button", "A:", ax, ay, "Button", "B:", bx, by, "Prize:", px, py] => {
+            [
+                "Button",
+                "A:",
+                ax,
+                ay,
+                "Button",
+                "B:",
+                bx,
+                by,
+                "Prize:",
+                px,
+                py,
+            ] => {
                 let ax = extract_u64!(ax, "X+", ",")?;
                 let ay = extract_u64!(ay, "Y+")?;
                 let bx = extract_u64!(bx, "X+", ",")?;
@@ -110,11 +122,7 @@ impl ArcadeMachine {
         let b = ((-px * ay) + (py * ax)) / common_denominator;
 
         let res = (a * 3.0) + b;
-        if res.fract() == 0.0 {
-            res as u64
-        } else {
-            0
-        }
+        if res.fract() == 0.0 { res as u64 } else { 0 }
     }
 }
 

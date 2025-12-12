@@ -18,7 +18,7 @@ def resolve(expr: str) -> int:
 
     while m := SUBEXPR_PATTERN.search(expr):
         start, stop = m.span()
-        expr_val = resolve(expr[start + 1: stop - 1])
+        expr_val = resolve(expr[start + 1 : stop - 1])
         expr = expr[:start] + str(expr_val) + expr[stop:]
 
     while m := ADDITION_PATTERN.search(expr):

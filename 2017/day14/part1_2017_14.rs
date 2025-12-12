@@ -4,7 +4,6 @@
 
 // Solution to AoC 2017 Day 14 Part 1
 
-
 fn knot_hash(lengths: &[u8]) -> [u8; 16] {
     use std::collections::VecDeque;
     use std::iter::FromIterator;

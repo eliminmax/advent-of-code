@@ -63,11 +63,7 @@ fn main() {
         start_col,
         data: input
             .into_iter()
-            .flat_map(|row| {
-                row.chars()
-                    .map(DiagramSpace::from)
-                    .collect::<Vec<_>>()
-            })
+            .flat_map(|row| row.chars().map(DiagramSpace::from).collect::<Vec<_>>())
             .collect(),
     };
     println!("{}", diagram.solve());

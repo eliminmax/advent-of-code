@@ -46,8 +46,8 @@ enum Instruction {
 
 /// Run while possible, and return the number of mul instructions run
 fn count_muls(code: &[Instruction]) -> u32 {
-    use std::convert::TryInto;
     use Instruction as I;
+    use std::convert::TryInto;
     let mut regs = Regs::default();
     let mut index: usize = 0;
     let mut muls: u32 = 0;

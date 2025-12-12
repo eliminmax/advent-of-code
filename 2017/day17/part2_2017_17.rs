@@ -13,7 +13,11 @@ fn spinlock_breaker() -> u32 {
         spinlock.rotate_left(MOVE_BY % spinlock.len());
         spinlock.push_back(i);
     }
-    spinlock.into_iter().skip_while(|&i| i != 0).nth(1).unwrap_or_else(|| unreachable!())
+    spinlock
+        .into_iter()
+        .skip_while(|&i| i != 0)
+        .nth(1)
+        .unwrap_or_else(|| unreachable!())
 }
 
 fn main() {

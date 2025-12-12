@@ -69,7 +69,12 @@ fn main() {
     for x in -50..=50 {
         for y in -50..=50 {
             for z in -50..=50 {
-                if steps.iter().filter_map(|s| s.apply(x, y, z)).next().unwrap_or(false) {
+                if steps
+                    .iter()
+                    .filter_map(|s| s.apply(x, y, z))
+                    .next()
+                    .unwrap_or(false)
+                {
                     count += 1;
                 }
             }

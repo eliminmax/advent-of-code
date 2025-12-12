@@ -6,9 +6,9 @@
 
 #include <ctype.h>
 #include <errno.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
 
 /* Solution to AoC 2018 Day 5 Part 1 */
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
     polymer[len] = '\0';
 
     process_polymer(polymer, len);
-    printf("%ju\n", (uintmax_t) strlen(polymer));
+    printf("%ju\n", (uintmax_t)strlen(polymer));
     free(polymer);
     fclose(fp);
     return EXIT_SUCCESS;

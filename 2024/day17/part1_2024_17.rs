@@ -7,8 +7,8 @@
 use std::env::args;
 use std::fs::read_to_string;
 use std::num::ParseIntError;
-use std::str::FromStr;
 use std::ops::Deref;
+use std::str::FromStr;
 
 #[derive(Debug)]
 struct Registers {
@@ -58,7 +58,6 @@ enum State {
 }
 
 fn interpret(code: &[Op], index: usize, output: &mut String, regs: &mut Registers) -> State {
-
     let opcode = *code[index];
     let val = *code[index + 1] as u64;
 
@@ -74,7 +73,6 @@ fn interpret(code: &[Op], index: usize, output: &mut String, regs: &mut Register
         }};
     }
 
-
     macro_rules! dv {
         ($reg: ident) => {{
             regs.$reg = (regs.a as f64 / (2f64).powf(combo_op!() as f64)) as u64;
@@ -84,26 +82,31 @@ fn interpret(code: &[Op], index: usize, output: &mut String, regs: &mut Register
 
     match opcode {
         0 => dv!(a), // adv
-        1 => { // bxl
+        1 => {
+            // bxl
             regs.b ^= val;
             State::Normal
         }
-        2 => { // bst
+        2 => {
+            // bst
             regs.b = combo_op!() % 8;
             State::Normal
         }
-        3 => { // jnz
+        3 => {
+            // jnz
             if regs.a == 0 {
                 State::Normal
             } else {
                 State::Jumping(val)
             }
         }
-        4 => { // bxc
+        4 => {
+            // bxc
             regs.b ^= regs.c;
             State::Normal
         }
-        5 => { // out
+        5 => {
+            // out
             if !output.is_empty() {
                 output.push(',');
             }
@@ -121,7 +124,8 @@ fn main() {
         .expect("Failed to read file!");
     let mut input_lines = input.lines();
 
-    let reg_vals: [u64; 3] = core::array::from_fn(|_| input_lines
+    let reg_vals: [u64; 3] = core::array::from_fn(|_| {
+        input_lines
             .next()
             .expect("Missing register line")
             .split_once(": ")
@@ -130,7 +134,7 @@ fn main() {
             .trim()
             .parse()
             .expect("Failed to parse register value")
-    );
+    });
     let mut regs = Registers {
         a: reg_vals[0],
         b: reg_vals[1],

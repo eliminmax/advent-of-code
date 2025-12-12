@@ -178,7 +178,7 @@ impl Burrow {
                 [head, Some(tail)]
                     if *tail as usize == i && head.is_none_or(|h| h as usize == i) =>
                 {
-                    continue
+                    continue;
                 }
                 [Some(head_amphi), Some(..)] => {
                     'left_moves: for full_dest in (0..x_pos).rev() {
@@ -192,7 +192,10 @@ impl Burrow {
                             ))
                         }
                     }
-                    #[allow(clippy::needless_range_loop, reason = "better fits with intent and more concise")]
+                    #[allow(
+                        clippy::needless_range_loop,
+                        reason = "better fits with intent and more concise"
+                    )]
                     'right_moves: for full_dest in (x_pos + 1)..11 {
                         if occupied[full_dest] {
                             break 'right_moves;
@@ -217,7 +220,10 @@ impl Burrow {
                             ))
                         }
                     }
-                    #[allow(clippy::needless_range_loop, reason = "better fits with intent and more concise")]
+                    #[allow(
+                        clippy::needless_range_loop,
+                        reason = "better fits with intent and more concise"
+                    )]
                     'right_moves: for full_dest in (x_pos + 1)..11 {
                         if occupied[full_dest] {
                             break 'right_moves;
@@ -290,7 +296,6 @@ fn main() {
     );
     println!("{max_cost}");
 }
-
 
 #[cfg(test)]
 mod tests {

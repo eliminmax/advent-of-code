@@ -18,11 +18,10 @@ fn main() {
     for range in ranges {
         for (i, s) in range.map(|i| (i, i.to_string())) {
             let l = s.len();
-            if l % 2 == 0 && s[..(l/2)] == s[(l/2)..] {
+            if l % 2 == 0 && s[..(l / 2)] == s[(l / 2)..] {
                 total += i;
             }
         }
-
     }
     println!("{total}");
 }

@@ -15,7 +15,6 @@ enum OrderingError {
     Unresolvable,
 }
 
-
 // you + number of elves helping. It's 2 in the simplified sample, but 5 in the actual scenario.
 const WORKER_COUNT: usize = 5;
 
@@ -47,8 +46,18 @@ impl Ordering for HashMap<u8, Vec<u8>> {
     fn load_entry(&mut self, s: &str) -> Result<(), OrderingError> {
         let words: Vec<&str> = s.split_whitespace().collect();
         // I don't know how I feel about this if let construct
-        if let ["Step", dep, "must", "be", "finished", "before", "step", step, "can", "begin."] =
-            words.as_slice()
+        if let [
+            "Step",
+            dep,
+            "must",
+            "be",
+            "finished",
+            "before",
+            "step",
+            step,
+            "can",
+            "begin.",
+        ] = words.as_slice()
         {
             if (dep.len() != 1) || (step.len() != 1) {
                 return Err(OrderingError::InvalidInstructionId);
@@ -108,7 +117,7 @@ impl Ordering for HashMap<u8, Vec<u8>> {
                 }
             }
             if !changed {
-                return Err(OrderingError::Unresolvable)
+                return Err(OrderingError::Unresolvable);
             }
             total_time += 1;
         }

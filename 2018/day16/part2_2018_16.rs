@@ -97,8 +97,8 @@ where
     I: Iterator<Item = &'a str>,
     I: Clone,
 {
-    use MapResolveFailure::NoPossibleResolution;
     use INSTRUCTION_IMPLS as INSTR_IMPS;
+    use MapResolveFailure::NoPossibleResolution;
     let samples = samples.map(|sample| sample.parse()).cycle();
     let mut possibilities: [BTreeSet<usize>; 16] = core::array::from_fn(|_| (0..16).collect());
     for sample in samples {

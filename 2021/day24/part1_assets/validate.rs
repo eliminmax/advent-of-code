@@ -56,8 +56,14 @@ fn main() {
     let blocks = blocks.as_slice();
     macro_rules! switch_test {
         ($evens: ident, $odds: ident) => {{
-            core::array::from_fn(|i| if i % 2 == 0 { NonZeroDigit::$evens } else {NonZeroDigit::$odds})
-        }}
+            core::array::from_fn(|i| {
+                if i % 2 == 0 {
+                    NonZeroDigit::$evens
+                } else {
+                    NonZeroDigit::$odds
+                }
+            })
+        }};
     }
 
     let tests = [
@@ -82,10 +88,11 @@ fn main() {
 
     for test in tests {
         let c_answer = dbg!(monad(test.as_ptr() as _));
-        let rs_answer = dbg!(test
-            .iter()
-            .zip(blocks)
-            .fold(0, |z, (&d, &block)| block.into_fn()(d, z)));
+        let rs_answer = dbg!(
+            test.iter()
+                .zip(blocks)
+                .fold(0, |z, (&d, &block)| block.into_fn()(d, z))
+        );
         assert_eq!(c_answer, rs_answer);
     }
 }

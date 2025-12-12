@@ -14,5 +14,4 @@ fn main() {
         let p2: i64 = block[15].strip_prefix("add y ").unwrap().parse().unwrap();
         println!("{p0}\t{p1}\t{p2}");
     }
-
 }

@@ -196,6 +196,5 @@ mod tests {
         update(&mut active);
         update(&mut active);
         assert_eq!(active.len(), 112);
-
     }
 }

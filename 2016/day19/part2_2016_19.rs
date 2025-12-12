@@ -26,7 +26,6 @@ fn main() {
 
     // keep going until only one element is left.
     while gift_circle_a.len() + gift_circle_b.len() > 1 {
-
         let _ = gift_circle_b.pop_front();
         // move the elf that just went to the back of the line.
         gift_circle_b.push_back(gift_circle_a.pop_front().unwrap());

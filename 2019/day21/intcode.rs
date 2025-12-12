@@ -15,7 +15,10 @@
 //! );
 //! ```
 
-#![cfg_attr(aoc_direct, allow(dead_code, reason = "file written as standalone crate"))]
+#![cfg_attr(
+    aoc_direct,
+    allow(dead_code, reason = "file written as standalone crate")
+)]
 
 use std::fmt;
 use std::num::TryFromIntError;
@@ -357,9 +360,7 @@ impl Interpreter<'_> {
 
         /// Shorthand to get the `$n`th parameter's value
         macro_rules! select_by_mode {
-            ($n: literal) => {{
-                self.param_val(self.index + $n, modes[$n - 1])?
-            }};
+            ($n: literal) => {{ self.param_val(self.index + $n, modes[$n - 1])? }};
         }
 
         /// Resolves to the destination address pointed to by the `$n`th parameter
@@ -368,7 +369,7 @@ impl Interpreter<'_> {
                 match modes[$n - 1] {
                     ParamMode::Positional => u64::try_from(self.code.get(self.index + $n))?,
                     ParamMode::Immediate => {
-                        return Err(ErrorState::WriteToImmediate(self.code.get(self.index + $n)))
+                        return Err(ErrorState::WriteToImmediate(self.code.get(self.index + $n)));
                     }
                     ParamMode::Relative => {
                         u64::try_from(self.rel_offset + self.code.get(self.index + $n))?
@@ -387,13 +388,7 @@ impl Interpreter<'_> {
 
         /// A comparison instruction
         macro_rules! comp {
-            ($op: expr) => {{
-                if $op {
-                    1
-                } else {
-                    0
-                }
-            }};
+            ($op: expr) => {{ if $op { 1 } else { 0 } }};
         }
 
         macro_rules! report_op {

@@ -42,7 +42,7 @@ macro_rules! ansi_esc {
         ansi_esc!(position[0, 0]);
         print!("\x1bc")
     }
-    
+
 }
 
 impl<I: Iterator<Item = Instruction>> Cpu<I> {
@@ -68,7 +68,6 @@ impl<I: Iterator<Item = Instruction>> Cpu<I> {
             None => self.state = State::Finalizing,
         }
     }
-
 
     fn render(self) {
         ansi_esc!(clear);
@@ -131,7 +130,10 @@ impl<I: Iterator<Item = Instruction>> Iterator for Cpu<I> {
     fn next(&mut self) -> Option<Self::Item> {
         let mut ret = self.register;
         match self.state {
-            State::Adding { n, finishing: false } => {
+            State::Adding {
+                n,
+                finishing: false,
+            } => {
                 self.state = State::Adding { n, finishing: true };
                 return Some(self.register);
             }

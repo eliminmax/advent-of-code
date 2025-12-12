@@ -139,7 +139,6 @@ fn main() {
     let y_end = y_end.get();
     let z_end = z_end.get();
     println!("{}", lcm3(x_end, y_end, z_end));
-    
 }
 
 /// Calculate the lowest common denominator of 2 `u64`s

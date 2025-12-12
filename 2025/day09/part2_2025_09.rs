@@ -55,10 +55,10 @@ fn main() {
 
     let mut bounds = ((u64::MAX, u64::MAX), (0, 0));
     for &(x, y) in red_tiles.iter() {
-        bounds.0 .0 = bounds.0 .0.min(x);
-        bounds.1 .0 = bounds.1 .0.max(x);
-        bounds.0 .1 = bounds.0 .1.min(y);
-        bounds.1 .1 = bounds.1 .1.max(y);
+        bounds.0.0 = bounds.0.0.min(x);
+        bounds.1.0 = bounds.1.0.max(x);
+        bounds.0.1 = bounds.0.1.min(y);
+        bounds.1.1 = bounds.1.1.max(y);
     }
     let mut segments = Vec::with_capacity(red_tiles.len());
     for w in red_tiles.windows(2) {

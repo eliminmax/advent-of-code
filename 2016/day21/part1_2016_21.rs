@@ -81,8 +81,8 @@ fn scramble<I>(rules: I, s: &str) -> Result<String, ScrambleError>
 where
     I: IntoIterator<Item = ScrambleOp>,
 {
-    use std::collections::VecDeque;
     use ScrambleOp as Op;
+    use std::collections::VecDeque;
     let mut letters: VecDeque<char> = s.chars().collect();
     let position_of = |target: char, v: &VecDeque<char>| -> Result<usize, ScrambleError> {
         for (i, c) in v.iter().enumerate() {

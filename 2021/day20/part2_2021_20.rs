@@ -40,18 +40,10 @@ impl Picture {
 
         for (r, c) in to_check {
             macro_rules! bit {
-                ($i: ident, -) => {{
-                    $i - 1
-                }};
-                ($i: ident, =) => {{
-                    $i
-                }};
-                ($i: ident, +) => {{
-                    $i + 1
-                }};
-                ($r: tt $c: tt) => {{
-                    self.inverted.contains(&(bit!(r, $r), bit!(c, $c))) ^ self.default_pix
-                }};
+                ($i: ident, -) => {{ $i - 1 }};
+                ($i: ident, =) => {{ $i }};
+                ($i: ident, +) => {{ $i + 1 }};
+                ($r: tt $c: tt) => {{ self.inverted.contains(&(bit!(r, $r), bit!(c, $c))) ^ self.default_pix }};
             }
 
             let index_arr = [
@@ -162,9 +154,7 @@ mod tests {
         let test_alg = EnhancementAlg::panicky_parse(test_pat);
         for i in 0_usize..512 {
             macro_rules! bit_check {
-                ($bit: literal) => {{
-                    i & (1 << $bit) != 0
-                }};
+                ($bit: literal) => {{ i & (1 << $bit) != 0 }};
             }
             let unpacked_index = [
                 [bit_check!(8), bit_check!(7), bit_check!(6)],

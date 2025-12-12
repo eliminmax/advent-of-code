@@ -54,7 +54,8 @@ fn main() {
         "{}",
         (0..(grid.len()))
             .map(|row| (0..(grid[row].len()))
-                .map(|col| find_end_positions(row, col, &grid, 0).len()).sum::<usize>())
+                .map(|col| find_end_positions(row, col, &grid, 0).len())
+                .sum::<usize>())
             .sum::<usize>()
     );
 }

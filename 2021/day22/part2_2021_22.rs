@@ -141,11 +141,7 @@ impl<const S: usize, T, I: Iterator<Item = T>> Iterator for GroupIter<S, T, I> {
             }
         }
 
-        if v.is_empty() {
-            None
-        } else {
-            Some(v)
-        }
+        if v.is_empty() { None } else { Some(v) }
     }
 }
 
@@ -233,7 +229,6 @@ fn main() {
     let batches = Arc::new(Mutex::new(GroupIter::<1024, _, _>::new(points_to_check)));
 
     let mut threads = Vec::with_capacity(num_child_threads);
-
 
     let run_task = |steps: Arc<[Step]>, batches: Arc<Mutex<TaskBatcher>>| -> u64 {
         let mut total = 0;

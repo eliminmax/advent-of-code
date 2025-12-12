@@ -97,8 +97,8 @@ type RotLookupTable = HashMap<usize, Result<usize, DescrambleError>>;
 /// Generate a RotLookupTable to use to look up the shift length needed to get from the original to
 /// the shifted position
 fn letter_rot_lookup_table(sz: usize) -> RotLookupTable {
-    use std::iter::FromIterator;
     use DescrambleError::{AmbiguousOriginal, ImpossibleLocation};
+    use std::iter::FromIterator;
     let mut generator = VecDeque::from_iter(std::iter::repeat_n('>', sz));
     let mut table = RotLookupTable::new();
     generator[0] = 'a';
@@ -114,7 +114,10 @@ fn letter_rot_lookup_table(sz: usize) -> RotLookupTable {
         let pos = position_of('a', v.iter().cloned()).expect("'a' known to be present");
         // if this is the first time the location has been seen, insert the current starting index,
         // otherwise, replace the value with Err(AmbiguousOriginal)
-        table.entry(pos).and_modify(|e| *e = Err(AmbiguousOriginal)).or_insert(Ok(shift_by));
+        table
+            .entry(pos)
+            .and_modify(|e| *e = Err(AmbiguousOriginal))
+            .or_insert(Ok(shift_by));
         generator.rotate_right(1);
     }
     for i in 0..sz {

@@ -100,39 +100,39 @@ fn neighbors(room: Room, loc: RoomLocation) -> impl Iterator<Item = RoomLocation
     .flatten()
 }
 
-
 /// The quick-and-dirty logic to process `regex` and return the distance to the furthest room.
 /// Panics on error
 fn process_pattern(regex: &[u8]) -> u32 {
-
     assert!(regex.starts_with(b"^") && regex.ends_with(b"$"));
 
     let mut facility = FacilityMap::new();
     let mut location_stack = Vec::new();
     let mut location = RoomLocation { x: 0, y: 0 };
 
-    let seq = regex[1..regex.len() - 1].iter().map(|i| Instruction::try_from(*i).unwrap());
+    let seq = regex[1..regex.len() - 1]
+        .iter()
+        .map(|i| Instruction::try_from(*i).unwrap());
     for step in seq {
         match step {
-                Instruction::Move(dir) => {
-                    facility.entry(location).or_default().set_open(dir);
-                    match dir {
-                        Direction::North => location.y -= 1,
-                        Direction::East => location.x += 1,
-                        Direction::South => location.y += 1,
-                        Direction::West => location.x -= 1,
-                    }
-                    facility.entry(location).or_default().set_open(dir.invert());
+            Instruction::Move(dir) => {
+                facility.entry(location).or_default().set_open(dir);
+                match dir {
+                    Direction::North => location.y -= 1,
+                    Direction::East => location.x += 1,
+                    Direction::South => location.y += 1,
+                    Direction::West => location.x -= 1,
                 }
-                Instruction::OptionStart => {
-                    location_stack.push(location);
-                }
-                Instruction::Divider => {
-                    location = *location_stack.last().unwrap();
-                }
-                Instruction::OptionStop => {
-                    location_stack.pop();
-                }
+                facility.entry(location).or_default().set_open(dir.invert());
+            }
+            Instruction::OptionStart => {
+                location_stack.push(location);
+            }
+            Instruction::Divider => {
+                location = *location_stack.last().unwrap();
+            }
+            Instruction::OptionStop => {
+                location_stack.pop();
+            }
         }
     }
 

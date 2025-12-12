@@ -12,7 +12,11 @@ fn main() {
     let lines: Vec<u64> = input.lines().map(|line| line.parse().unwrap()).collect();
 
     'main_loop: for window in lines.windows(26) {
-        let candidates: Vec<u64> = window[..25].iter().cloned().filter(|i| *i < window[25]).collect();
+        let candidates: Vec<u64> = window[..25]
+            .iter()
+            .cloned()
+            .filter(|i| *i < window[25])
+            .collect();
         for i in 0..candidates.len() {
             for j in (i + 1)..candidates.len() {
                 if candidates[i] + candidates[j] == window[25] {

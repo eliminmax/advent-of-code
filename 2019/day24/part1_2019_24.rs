@@ -21,10 +21,34 @@ impl Field {
     #[inline]
     const fn neighbors(bit_index: u8) -> [Option<u8>; 5] {
         match unpack_index(bit_index) {
-            (0, 0) => [Some(pack_index(0, 1)), Some(pack_index(1, 0)), None, None, None],
-            (4, 4) => [Some(pack_index(3, 4)), Some(pack_index(4, 3)), None, None, None],
-            (0, 4) => [Some(pack_index(0, 3)), Some(pack_index(1, 4)), None, None, None],
-            (4, 0) => [Some(pack_index(4, 1)), Some(pack_index(3, 0)), None, None, None],
+            (0, 0) => [
+                Some(pack_index(0, 1)),
+                Some(pack_index(1, 0)),
+                None,
+                None,
+                None,
+            ],
+            (4, 4) => [
+                Some(pack_index(3, 4)),
+                Some(pack_index(4, 3)),
+                None,
+                None,
+                None,
+            ],
+            (0, 4) => [
+                Some(pack_index(0, 3)),
+                Some(pack_index(1, 4)),
+                None,
+                None,
+                None,
+            ],
+            (4, 0) => [
+                Some(pack_index(4, 1)),
+                Some(pack_index(3, 0)),
+                None,
+                None,
+                None,
+            ],
             (0, c) => [
                 Some(pack_index(1, c)),
                 Some(pack_index(0, c - 1)),
@@ -95,17 +119,21 @@ impl Field {
 }
 
 fn main() {
+    use std::collections::HashSet;
     use std::env::args;
     use std::fs::read_to_string;
-    use std::collections::HashSet;
     let input =
         read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");
     let mut field_data = 0;
-    for (i, has_bug) in input.bytes().filter_map(|b| match b {
-        b'#' => Some(true),
-        b'.' => Some(false),
-        _ => None,
-    }).enumerate() {
+    for (i, has_bug) in input
+        .bytes()
+        .filter_map(|b| match b {
+            b'#' => Some(true),
+            b'.' => Some(false),
+            _ => None,
+        })
+        .enumerate()
+    {
         if has_bug {
             field_data |= 1 << i;
         }

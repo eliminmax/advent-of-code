@@ -6,9 +6,7 @@
 
 fn neighbors(row: usize, col: usize) -> impl Iterator<Item = (usize, usize)> {
     macro_rules! axis_iter {
-        ($var: ident) => {{
-            $var.saturating_sub(1)..=(9.min($var + 1))
-        }};
+        ($var: ident) => {{ $var.saturating_sub(1)..=(9.min($var + 1)) }};
     }
 
     (axis_iter!(row).flat_map(move |r| axis_iter!(col).map(move |c| (r, c))))

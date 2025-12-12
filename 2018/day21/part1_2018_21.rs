@@ -68,8 +68,8 @@ struct Instruction(Opcode, Args);
 fn main() {
     use std::env::args;
     use std::fs::read_to_string;
-    let input = read_to_string(args().nth(1).as_deref().unwrap_or("input"))
-        .expect("Failed to read file!");
+    let input =
+        read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");
     let mut lines = input.lines();
     let ip_binding: usize = lines
         .next()
@@ -84,7 +84,10 @@ fn main() {
     let instructions: Vec<Instruction> = lines
         .map(|line| line.parse().expect("Invalid instruction"))
         .collect();
-    println!("{}", get_target_val(&instructions[..], ip_binding, 0).unwrap());
+    println!(
+        "{}",
+        get_target_val(&instructions[..], ip_binding, 0).unwrap()
+    );
 }
 
 impl std::str::FromStr for Instruction {

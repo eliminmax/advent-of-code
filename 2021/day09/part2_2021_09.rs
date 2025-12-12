@@ -67,7 +67,10 @@ fn main() {
         let mut queue = VecDeque::from([point]);
         while let Some(pos) = queue.pop_front() {
             if basin.insert(pos) {
-                assert!(pos == point || !low_points.contains(&pos), "Overlapping basins");
+                assert!(
+                    pos == point || !low_points.contains(&pos),
+                    "Overlapping basins"
+                );
                 queue.extend(pos.neighbors().into_iter().filter(|n| map.contains_key(n)));
             }
         }
@@ -77,5 +80,4 @@ fn main() {
     sizes.sort_by(|a, b| b.cmp(a));
     let answer: usize = sizes[..3].iter().product();
     println!("{answer}");
-
 }

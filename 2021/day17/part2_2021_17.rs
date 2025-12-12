@@ -8,14 +8,19 @@
 // brute force solution works well enough
 
 /// given the range of possible y bounds, returns the range of possible starting y velocities that
-/// will result in y falling within the y range 
+/// will result in y falling within the y range
 fn main() {
     use std::env::args;
     use std::fs::read_to_string;
     let input =
         read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");
 
-    let (x, y) = input.trim().strip_prefix("target area: x=").unwrap().split_once(", y=").unwrap();
+    let (x, y) = input
+        .trim()
+        .strip_prefix("target area: x=")
+        .unwrap()
+        .split_once(", y=")
+        .unwrap();
     let (x_min, x_max) = x.split_once("..").unwrap();
     let (y_min, y_max) = y.split_once("..").unwrap();
 
@@ -25,7 +30,7 @@ fn main() {
     let y_max: i32 = y_max.parse().unwrap();
 
     let x_bounds = (x_min.min(-1), x_max.max(1));
-    
+
     let mut counter = 0;
 
     for start_dx in x_bounds.0..=x_bounds.1 {

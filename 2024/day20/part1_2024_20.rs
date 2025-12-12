@@ -147,10 +147,7 @@ impl FromStr for CodeGrid {
         }
 
         Ok(CodeGrid {
-            data: grid
-                .into_iter()
-                .flat_map(|row| row.into_iter())
-                .collect(),
+            data: grid.into_iter().flat_map(|row| row.into_iter()).collect(),
             start,
             end,
             rows,

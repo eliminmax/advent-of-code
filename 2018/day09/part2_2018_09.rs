@@ -21,7 +21,9 @@ fn winning_total(players: NonZero<usize>, points: NonZero<u32>) -> u32 {
         } else {
             marbles.rotate_right(8);
             scores[player] += marble;
-            scores[player] += marbles.pop_front().expect("There will always be an element here");
+            scores[player] += marbles
+                .pop_front()
+                .expect("There will always be an element here");
             marbles.rotate_left(1);
         }
     }
@@ -42,7 +44,8 @@ fn main() {
         )
         .expect("Can't work with zero players");
         points = NonZero::<u32>::new(
-            100 * b.parse::<u32>()
+            100 * b
+                .parse::<u32>()
                 .expect("Failed to parse point total as a u32"),
         )
         .expect("Can't work with zero marbles");

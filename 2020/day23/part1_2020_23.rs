@@ -102,9 +102,7 @@ impl CrabShuffler {
 
     const fn shuffle(&mut self) {
         macro_rules! get_cup {
-            ($cup: expr) => {{
-                self.state[((self.index as usize) + 9 + ($cup as usize)) % 9]
-            }};
+            ($cup: expr) => {{ self.state[((self.index as usize) + 9 + ($cup as usize)) % 9] }};
         }
         macro_rules! set_cup {
             ($cup: expr, $val: expr) => {

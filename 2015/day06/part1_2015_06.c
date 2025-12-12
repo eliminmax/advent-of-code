@@ -113,15 +113,17 @@ int main(int argc, char *argv[]) {
         }
 
         switch (action) {
-        case TURN_ON:
-            set_range(start_row, start_col, end_row, end_col, lights, true);
-            break;
-        case TURN_OFF:
-            set_range(start_row, start_col, end_row, end_col, lights, false);
-            break;
-        case TOGGLE:
-            toggle_range(start_row, start_col, end_row, end_col, lights);
-            break;
+            case TURN_ON:
+                set_range(start_row, start_col, end_row, end_col, lights, true);
+                break;
+            case TURN_OFF:
+                set_range(
+                    start_row, start_col, end_row, end_col, lights, false
+                );
+                break;
+            case TOGGLE:
+                toggle_range(start_row, start_col, end_row, end_col, lights);
+                break;
         }
     }
     if (ferror(fp)) {

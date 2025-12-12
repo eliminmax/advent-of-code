@@ -35,8 +35,8 @@ enum Instruction {
 }
 
 fn first_rcv(code: &[Instruction]) -> Option<i64> {
-    use std::convert::TryInto;
     use Instruction as I;
+    use std::convert::TryInto;
     let mut index: usize = 0;
     let mut regs = Regs::default();
     let mut recent_sound: Option<i64> = None;

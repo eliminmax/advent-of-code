@@ -21,7 +21,9 @@ fn winning_total(players: NonZero<usize>, points: NonZero<u32>) -> u32 {
         } else {
             marbles.rotate_right(8);
             scores[player] += marble;
-            scores[player] += marbles.pop_front().expect("There will always be an element here");
+            scores[player] += marbles
+                .pop_front()
+                .expect("There will always be an element here");
             marbles.rotate_left(1);
         }
     }

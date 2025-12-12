@@ -51,9 +51,9 @@ struct BotSystem {
 }
 
 #[derive(Debug)]
-enum ProcessingError{
+enum ProcessingError {
     IncompleteBot,
-    MatchNotFound
+    MatchNotFound,
 }
 
 impl BotSystem {
@@ -73,7 +73,20 @@ impl BotSystem {
                 self.bots[bot_num].items.push(val);
             }
             // not checking every single word for this one
-            ["bot", b, _, _, _, low_dtype, low_dn, _, _, _, high_dtype, high_dn] => {
+            [
+                "bot",
+                b,
+                _,
+                _,
+                _,
+                low_dtype,
+                low_dn,
+                _,
+                _,
+                _,
+                high_dtype,
+                high_dn,
+            ] => {
                 let bot_num: usize = b.parse()?;
                 let low: TransferTarget = (*low_dtype, *low_dn).try_into()?;
                 let high: TransferTarget = (*high_dtype, *high_dn).try_into()?;
@@ -90,13 +103,11 @@ impl BotSystem {
             .bots
             .iter()
             .enumerate()
-            .filter_map(|(id, bot)| {
-                if bot.items.len() == 2 {
-                    Some(id)
-                } else {
-                    None
-                }
-            })
+            .filter_map(
+                |(id, bot)| {
+                    if bot.items.len() == 2 { Some(id) } else { None }
+                },
+            )
             .collect();
         while let Some(id) = queue.pop_front() {
             let rule = self.bots[id].rule.ok_or(ProcessingError::IncompleteBot)?;
@@ -137,5 +148,10 @@ fn main() {
     input
         .lines()
         .for_each(|line| system.parse_rule(line).expect("Failed to parse input"));
-    println!("{}", system.find_comparer((17, 61)).expect("Failed to find bot of interest"));
+    println!(
+        "{}",
+        system
+            .find_comparer((17, 61))
+            .expect("Failed to find bot of interest")
+    );
 }

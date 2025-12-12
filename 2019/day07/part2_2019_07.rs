@@ -183,7 +183,6 @@ fn main() {
         .collect();
     let mut max = 0i32;
     for permutation in heap_permutations(&mut [5, 6, 7, 8, 9]).into_iter() {
-
         let mut amp_cons = core::array::from_fn::<_, 5, _>(|i| {
             Some(AmplifierContext {
                 code: code.clone(),

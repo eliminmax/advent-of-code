@@ -173,7 +173,7 @@ impl WireKit for HashMap<String, Wire> {
             WireOp::Binary(ref op_string, OpParam::Value(lit_a), OpParam::Value(lit_b)) => {
                 expand_ops!(op_string.as_str(), lit_a, lit_b)
             }
-            WireOp::Binary(ref op_string, OpParam::Wire(ref a), OpParam::Value( lit_b))
+            WireOp::Binary(ref op_string, OpParam::Wire(ref a), OpParam::Value(lit_b))
             | WireOp::Binary(ref op_string, OpParam::Value(lit_b), OpParam::Wire(ref a)) => {
                 if let Some(Wire::WithValue(lit_a)) = self.get(a) {
                     expand_ops!(op_string.as_str(), *lit_a, lit_b)
@@ -246,10 +246,15 @@ fn main() {
             .unwrap_or_else(|err| panic!("{} could not be parsed as an instruction", err))
     });
 
-    kit.entry(String::from("b")).insert_entry(Wire::WithValue(a));
-    kit.resolve().expect("Failed to resolve values in wire kit (second time around)");
+    kit.entry(String::from("b"))
+        .insert_entry(Wire::WithValue(a));
+    kit.resolve()
+        .expect("Failed to resolve values in wire kit (second time around)");
 
-    match kit.get("a").expect("Key \"a\" missing at end of second run.") {
+    match kit
+        .get("a")
+        .expect("Key \"a\" missing at end of second run.")
+    {
         Wire::WithValue(v) => println!("{v}"),
         e => panic!("\"a\" resolved to {:?}, rather than a Wire::WithValue", e),
     };

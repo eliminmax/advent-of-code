@@ -33,7 +33,7 @@ macro_rules! springscript {
 //
 // jumping at `1101` handles patterns 1 and 2, and jumping at 00.1 handles patterns 3 and 4
 //
-// 
+//
 // Sympy's `simplify_logic(((A & B & ~C) | (~A & ~B)))` resolves to
 // `D & (A | ~B) & (B | ~A) & (~B | ~C)`
 //
@@ -68,7 +68,7 @@ macro_rules! springscript {
 //
 // I validated that the program matched the expression with a springscript emulator of mine, but it
 // fell in the first hole in arrangement 3 nonetheless
-//  
+//
 // Back to the drawing board:
 //
 // I decided to try to arrange the holes based on where they actually need to jump
@@ -81,7 +81,7 @@ macro_rules! springscript {
 //     ####|#..#|.#######   (setup 3, 1st hole)
 // #####..#|.###|####       (setup 3, 2nd hole)
 //    #####|...#|#######    (setup 4)
-// 
+//
 // Of the 3 options for setup 1, the 1st and 3rd would look identical to other inputs - (setup 3, 2nd
 // hole and setup 2, 1st hole respectively)
 //
@@ -115,7 +115,6 @@ macro_rules! springscript {
 //
 // Plugging that into sympy's `simplify_logic` results in
 // D & (~A | ~C) & (A | C | ~B)
-
 
 const PROG0: &str = springscript! {
     [NOT A T]

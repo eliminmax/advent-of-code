@@ -86,11 +86,7 @@ impl FromStr for WarehouseFloor {
                     }
                     _ => e = Some(WarehouseParseError::InvalidGridSpace),
                 });
-                if let Some(err) = e {
-                    Err(err)
-                } else {
-                    Ok(v)
-                }
+                if let Some(err) = e { Err(err) } else { Ok(v) }
             })
             .collect::<Result<Vec<Vec<GridSpace>>, WarehouseParseError>>()?;
 
@@ -281,11 +277,7 @@ impl WarehouseFloor {
         } else {
             self.check_move_horiz(self.bot_loc, move_type, &mut moves)
         };
-        if check {
-            Some(moves)
-        } else {
-            None
-        }
+        if check { Some(moves) } else { None }
     }
 
     fn process_moves(&mut self) -> usize {

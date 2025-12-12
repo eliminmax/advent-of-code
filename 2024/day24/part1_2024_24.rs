@@ -162,7 +162,11 @@ fn main() {
             .expect("Failed to insert wire-from-wires");
     }
     wires.resolve_all().expect("Failed to resolve wire values");
-    let mut zwires: Vec<&str> = wires.keys().filter(|&k| k.starts_with('z')).cloned().collect();
+    let mut zwires: Vec<&str> = wires
+        .keys()
+        .filter(|&k| k.starts_with('z'))
+        .cloned()
+        .collect();
     zwires.sort();
     let mut result: u64 = 0;
     for (shift, wire) in zwires.into_iter().enumerate() {

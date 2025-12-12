@@ -17,7 +17,9 @@ fn main() {
     for line in input.lines() {
         let words: Vec<&str> = line.split_whitespace().collect();
         let km_s = words[3].parse::<u32>().expect("Failed to parse speed");
-        let travel_time = words[6].parse::<u32>().expect("Failed to parse travel time");
+        let travel_time = words[6]
+            .parse::<u32>()
+            .expect("Failed to parse travel time");
         let rest_time = words[13].parse::<u32>().expect("Failed to parse rest time");
 
         let combined_time = travel_time + rest_time; // amount of time needed for a full cycle

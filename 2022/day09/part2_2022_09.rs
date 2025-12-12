@@ -39,7 +39,7 @@ impl Rope {
             self.0[0].1 += y_off;
             let mut prev = self.0[0];
             for pos in self.0[1..].iter_mut() {
-                    // if this didn't need to be moved, no others will either
+                // if this didn't need to be moved, no others will either
                 if distance(prev, *pos) <= 1 {
                     continue 'outer;
                 }

@@ -174,7 +174,7 @@ fn build_instructions(
 
 fn main() {
     use std::env::{self, args};
-    use std::fs::{read_to_string, OpenOptions};
+    use std::fs::{OpenOptions, read_to_string};
 
     let input =
         read_to_string(args().nth(1).as_deref().unwrap_or("input")).expect("Failed to read file!");

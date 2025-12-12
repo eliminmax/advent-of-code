@@ -46,13 +46,16 @@ impl GOLGrid {
     }
 
     fn update(&mut self) {
-        let to_kill: Vec<(usize, usize)> = self.locations().into_iter().filter(|&loc| {
-            self[loc] && {
-                let n = self.count_neighbors(loc);
-                n != 2 && n != 3
-            }
-        })
-        .collect();
+        let to_kill: Vec<(usize, usize)> = self
+            .locations()
+            .into_iter()
+            .filter(|&loc| {
+                self[loc] && {
+                    let n = self.count_neighbors(loc);
+                    n != 2 && n != 3
+                }
+            })
+            .collect();
 
         let to_spawn: Vec<(usize, usize)> = self
             .locations()

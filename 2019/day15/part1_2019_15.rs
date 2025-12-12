@@ -6,7 +6,7 @@
 
 mod intcode;
 use intcode::Interpreter;
-use std::collections::{BTreeMap, HashMap, BinaryHeap};
+use std::collections::{BTreeMap, BinaryHeap, HashMap};
 
 #[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Clone, Copy)]
 struct Location {
@@ -115,7 +115,6 @@ fn main() {
 fn find_max_distance(map: HashMap<Location, RoomType>) -> u32 {
     use std::cmp::Reverse as Rev;
 
-
     let mut distances: HashMap<Location, u32> = HashMap::with_capacity(map.len());
     let mut queue: BinaryHeap<Rev<(u32, Location)>> = BinaryHeap::with_capacity(map.len());
     queue.push(Rev((0, Location { x: 0, y: 0 })));
@@ -136,5 +135,9 @@ fn find_max_distance(map: HashMap<Location, RoomType>) -> u32 {
         }
     }
 
-    map.into_iter().filter(|(_, r)| *r == RoomType::Oxy).map(|(l, _)| distances[&l]).min().unwrap()
+    map.into_iter()
+        .filter(|(_, r)| *r == RoomType::Oxy)
+        .map(|(l, _)| distances[&l])
+        .min()
+        .unwrap()
 }

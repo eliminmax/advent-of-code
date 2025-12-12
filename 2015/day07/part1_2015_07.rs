@@ -173,7 +173,7 @@ impl WireKit for HashMap<String, Wire> {
             WireOp::Binary(ref op_string, OpParam::Value(lit_a), OpParam::Value(lit_b)) => {
                 expand_ops!(op_string.as_str(), lit_a, lit_b)
             }
-            WireOp::Binary(ref op_string, OpParam::Wire(ref a), OpParam::Value( lit_b))
+            WireOp::Binary(ref op_string, OpParam::Wire(ref a), OpParam::Value(lit_b))
             | WireOp::Binary(ref op_string, OpParam::Value(lit_b), OpParam::Wire(ref a)) => {
                 if let Some(Wire::WithValue(lit_a)) = self.get(a) {
                     expand_ops!(op_string.as_str(), *lit_a, lit_b)

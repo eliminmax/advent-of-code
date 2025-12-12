@@ -4,7 +4,6 @@
 
 // Solution to AoC 2021 Day 24 Part 1
 
-
 const fn digit_pair(offset: i8) -> (i8, i8) {
     assert!(matches!(offset, -8..=8));
     if offset <= 0 {
@@ -25,21 +24,37 @@ fn main() {
     let mut digits: [i8; 14] = [0; 14];
     for (i, block) in blocks.chunks(18).enumerate() {
         if block[4].trim() == "div z 1" {
-            stack.push((i, block[15].trim().strip_prefix("add y ").unwrap().parse().unwrap()));
+            stack.push((
+                i,
+                block[15]
+                    .trim()
+                    .strip_prefix("add y ")
+                    .unwrap()
+                    .parse()
+                    .unwrap(),
+            ));
         } else {
             let (paired_index, off_a) = stack.pop().unwrap();
-            let off_b: i8 = block[5].trim().strip_prefix("add x ").unwrap().parse().unwrap();
+            let off_b: i8 = block[5]
+                .trim()
+                .strip_prefix("add x ")
+                .unwrap()
+                .parse()
+                .unwrap();
             let (a, b) = digit_pair(off_a + off_b);
             digits[paired_index] = a;
             digits[i] = b;
         }
     }
 
-    if digits.contains(&0) { panic!("Digit left unset: {digits:?}"); }
+    if digits.contains(&0) {
+        panic!("Digit left unset: {digits:?}");
+    }
 
-    for digit in digits { print!("{digit}") };
+    for digit in digits {
+        print!("{digit}")
+    }
     println!()
-    
 }
 
 #[cfg(test)]

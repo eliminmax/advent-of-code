@@ -77,9 +77,11 @@ fn main() {
     let mut nearby_tickets: Vec<Vec<u16>> = lines
         .map(|line| line.split(",").map(|i| i.parse().unwrap()).collect())
         .collect();
-    assert!(nearby_tickets
-        .iter()
-        .all(|ticket| ticket.len() == my_ticket.len()));
+    assert!(
+        nearby_tickets
+            .iter()
+            .all(|ticket| ticket.len() == my_ticket.len())
+    );
 
     // discard nearby tickets with invalid items
     nearby_tickets.retain(|ticket| {

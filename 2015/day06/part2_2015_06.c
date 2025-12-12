@@ -5,8 +5,8 @@
  */
 
 #include <errno.h>
-#include <stdio.h>
 #include <limits.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -125,7 +125,6 @@ int main(int argc, char *argv[]) {
         }
 
         operation(start_row, start_col, end_row, end_col, lights);
-
     }
     if (ferror(fp)) {
         fprintf(stderr, "Issue occurred reading %s.\n", filename);

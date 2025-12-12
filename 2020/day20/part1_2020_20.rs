@@ -119,9 +119,10 @@ fn main() {
 
         macro_rules! check_pos {
             (neighbor:($x: expr, $y: expr), tile.$tile_edge: ident(), neighbor.$other_edge: ident()) => {
-                assert!(grid
-                    .get(&($x, $y))
-                    .is_none_or(|t| t.$other_edge() == tile.$tile_edge()));
+                assert!(
+                    grid.get(&($x, $y))
+                        .is_none_or(|t| t.$other_edge() == tile.$tile_edge())
+                );
             };
         }
 
@@ -153,7 +154,6 @@ fn main() {
     let top_right = u64::from(grid[&(max_x, min_y)].id);
     let bottom_right = u64::from(grid[&(max_x, max_y)].id);
     println!("{}", top_left * bottom_left * top_right * bottom_right);
-
 }
 
 impl std::fmt::Display for Tile {

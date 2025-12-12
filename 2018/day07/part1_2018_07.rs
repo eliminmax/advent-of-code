@@ -23,8 +23,18 @@ impl Ordering for HashMap<char, Vec<char>> {
     fn load_entry(&mut self, s: &str) -> Result<(), OrderingError> {
         let words: Vec<&str> = s.split_whitespace().collect();
         // I don't know how I feel about this if let construct
-        if let ["Step", dep, "must", "be", "finished", "before", "step", step, "can", "begin."] =
-            words.as_slice()
+        if let [
+            "Step",
+            dep,
+            "must",
+            "be",
+            "finished",
+            "before",
+            "step",
+            step,
+            "can",
+            "begin.",
+        ] = words.as_slice()
         {
             if (dep.chars().count() != 1) || (step.chars().count() != 1) {
                 panic!("Step ids must be 1 character long");

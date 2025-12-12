@@ -19,7 +19,8 @@ fn main() {
         .split(",")
         .map(|s| s.parse().unwrap())
         .enumerate()
-        .map(|(i, n)| (n, i)) {
+        .map(|(i, n)| (n, i))
+    {
         if let Some(prev) = spoken.insert(n, i) {
             next_number = i - prev;
         } else {

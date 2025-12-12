@@ -99,7 +99,13 @@ fn main() {
         )
         .unwrap();
         if !output.contains("Alert! Droids on this ship are") {
-            println!("{}", output.chars().filter(|c| c.is_numeric()).collect::<String>() );
+            println!(
+                "{}",
+                output
+                    .chars()
+                    .filter(|c| c.is_numeric())
+                    .collect::<String>()
+            );
             break;
         }
     }

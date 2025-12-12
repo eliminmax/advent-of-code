@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: 0BSD
  */
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 /* Solution to AoC 2025 Day 03 Part 1 */
 
@@ -29,17 +29,13 @@ static int max_joltage(char *bank) {
     *m = 0;
     char *max_l = max_digit(bank), *max_r = max_digit(m + 1);
     int l = 0, r = 0;
-    if (max_r != NULL) {
-        r = ((int)max_d * 10) + (*max_r - '0');
-    }
-    if (max_l != NULL) {
-        l = ((int)(*max_l - '0') * 10) + (max_d);
-    }
+    if (max_r != NULL) { r = ((int)max_d * 10) + (*max_r - '0'); }
+    if (max_l != NULL) { l = ((int)(*max_l - '0') * 10) + (max_d); }
     return l > r ? l : r;
 }
 
 int main(int argc, char *argv[]) {
-    const char *filename = argc > 1? argv[1] : "input"; 
+    const char *filename = argc > 1 ? argv[1] : "input";
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         fprintf(
@@ -48,14 +44,14 @@ int main(int argc, char *argv[]) {
             filename,
             strerror(errno)
         );
-        return EXIT_FAILURE;  
+        return EXIT_FAILURE;
     }
     // actual input lines are 100 long each. This gives enough room for the
     // newline and null terminator when calling `fgets`.
     char line_buf[102];
     int total = 0;
 
-    while(fgets(line_buf, 102, fp)) {
+    while (fgets(line_buf, 102, fp)) {
         char *ptr = strchr(line_buf, '\n');
         if (ptr) *ptr = '\0';
         total += max_joltage(line_buf);

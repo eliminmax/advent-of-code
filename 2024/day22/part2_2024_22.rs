@@ -4,9 +4,9 @@
 
 // Solution to AoC 2024 Day 22 Part 2
 
+use std::collections::{HashMap, HashSet, VecDeque};
 use std::env::args;
 use std::fs::read_to_string;
-use std::collections::{HashMap, HashSet, VecDeque};
 
 fn mix_and_prune(secret: u64, num: u64) -> u64 {
     (secret ^ num) % 16_777_216
@@ -34,7 +34,9 @@ fn find_vals_for(starting_secret: u64, vals: &mut HashMap<[i8; 4], u64>) {
             let seq: [i8; 4] = core::array::from_fn(|i| seq_tracker[i + 1] - seq_tracker[i]);
             if !seen_seqs.contains(&seq) {
                 seen_seqs.insert(seq);
-                vals.entry(seq).and_modify(|e| *e += current_cost as u64).or_insert(current_cost as u64);
+                vals.entry(seq)
+                    .and_modify(|e| *e += current_cost as u64)
+                    .or_insert(current_cost as u64);
             }
             seq_tracker.pop_front();
         }
@@ -56,5 +58,11 @@ fn main() {
         find_vals_for(secret, &mut sequences);
     }
 
-    println!("{}", sequences.into_values().max().expect("failed to obtain max value"));
+    println!(
+        "{}",
+        sequences
+            .into_values()
+            .max()
+            .expect("failed to obtain max value")
+    );
 }
