@@ -21,15 +21,13 @@ case "${1:-rust}" in
     jq) extension="jq" ;;
 esac
 
-# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-part1_name="$(printf 'part1_%04d_%02d.%s' "$year" "$day" "$extension")"
+part1_name="part1.$extension"
 if ! [ -e "$part1_name" ]; then
     printf 'File %s does not exist!\n' "$part1_name" >&2
     exit 1
 fi
 
-# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-outname="$(printf 'part2_%04d_%02d.%s' "$year" "$day" "$extension")"
+outname="part2.$extension"
 
 if [ -e "$outname" ]; then
     printf 'Refusing to clobber existing file %s!\n' "$outname" >&2

@@ -26,8 +26,7 @@ case "${1:-rust}" in
     jq) extension="jq" ;;
 esac
 
-# shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-outname="$(printf 'part1_%04d_%02d.%s' "$year" "$day" "$extension")"
+outname="part1.$extension"
 if [ -e "$outname" ]; then
     printf 'Refusing to clobber existing file %s!\n' "$outname" >&2
     exit 1
