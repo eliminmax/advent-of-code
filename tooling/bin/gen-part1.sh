@@ -8,6 +8,7 @@
 set -e
 
 template_dir="$(dirname "$(realpath "$0")")/../templates"
+script_utils="$(dirname "$(dirname "$(realpath "$0")")")/script_utils"
 
 # set year and day arguments by parsing current directory name
 eval "$(pwd | sed 's#.*/\([0-9]\{4\}\)/day0\?\([12]\?[0-9]\)$#year=\1 day=\2#')"
@@ -16,7 +17,7 @@ c_year="$(date +%Y)"
 c_name="$(git config user.name)"
 
 # shellcheck disable=SC2154 # variables set by eval "$(pwd | sed ...)"
-get_input.sh "$year" "$day"
+"$script_utils"/get_input.sh "$year" "$day"
 
 case "${1:-rust}" in
     rs|rust) extension="rs" ;;
@@ -74,7 +75,7 @@ if [ "$extension" = 'rs' ]; then
         # If it matches zero or more than 1, it emits a `printf` command at the
         # end to warn the user, followed by `exit 1`, so nothing past this
         # will run on error
-        eval "$(parse_sol_comment "$cargo_main")"
+        eval "$("$script_utils/parse_sol_comment" "$cargo_main")"
         # shellcheck disable=SC2154 # variables set with parse_sol_comment
         expected_file="$AOC_GIT_DIR/$year/day$day/part$part.rs"
         if [ ! -e "$expected_file" ]; then
