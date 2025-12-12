@@ -32,8 +32,8 @@ then 2017's, and so on.
 
 I quickly realized that was not realistic, and was okay with taking previous
 years at my own pace, but continued to go through all previous years at once
-until I saw 2019's day 9 built on a previous day's puzzle, and decided to switch
-to taking it year by year, mainly because of Intcode.
+until I saw 2019's day 9 built on a previous day's puzzle that year, and decided
+to switch to taking it year by year, mainly because of Intcode.
 
 Almost every solution is in a single language, in a standalone source file, with
 dependencies only on its language's standard library and occasionally other
