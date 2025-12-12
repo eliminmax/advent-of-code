@@ -13,7 +13,7 @@ aoc_dir="$(realpath "$(dirname "$(realpath "$0")")/../..")"
 cookie="session=$(cat "$aoc_dir/.cookie")"
 
 if [ -z "$year" ] || [ -z "$day" ]; then
-    printf 'usage: %s year day\n' >&2
+    printf 'usage: %s year day\n' "$0" >&2
     exit 2
 fi
 
