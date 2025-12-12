@@ -19,10 +19,7 @@ fi
 
 target_path="$(printf '%s/%04d/day%02d/input' "$aoc_dir" "$year" "$day")"
 
-if [ -e "$target_path" ]; then
-    printf '%s already exists.\n' "$target_path" >&2
-    exit 0
-fi
+if [ -e "$target_path" ]; then exit 0; fi
 
 url="$(printf 'https://adventofcode.com/%04d/day/%d/input' "$year" "$day")"
 
