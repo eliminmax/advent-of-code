@@ -75,9 +75,8 @@ if [ "$extension" = 'rs' ]; then
         # end to warn the user, followed by `exit 1`, so nothing past this
         # will run on error
         eval "$(parse_sol_comment "$cargo_main")"
-        # shellcheck disable=SC2154 # variables set by parse_sol_comment
-        expected_file="part${part}_${year}_$day_padded.rs"
-        expected_file="$AOC_GIT_DIR/$year/day$day_padded/$expected_file"
+        # shellcheck disable=SC2154 # variables set with parse_sol_comment
+        expected_file="$AOC_GIT_DIR/$year/day$day/part$part.rs"
         if [ ! -e "$expected_file" ]; then
             printf '%s has not been copied over to %s - not clobbering\n' >&2 \
                 "$cargo_main" \

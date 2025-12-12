@@ -6,8 +6,7 @@
 
 $2" "$3" "$4 == "Solution to AoC" {
     print "year="$5
-    print "day="$7
-    printf "day_padded=%02d\n", $7
+    printf "day=%02d\n", $7
     print "part="$9
     ++matches
 }
