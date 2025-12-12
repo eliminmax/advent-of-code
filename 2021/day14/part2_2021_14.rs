@@ -12,7 +12,7 @@
 //! then ran `timeout 20 cargo r --release --quiet 2>&1 | ts -i '%H:%M:%.S' > log`, to get a log of
 //! the first 20 seconds.
 //!
-//! Looking at `log`, after the first round beyound around round 13 approximately doubled in time
+//! Looking at `log`, after the first round beyond around round 13 approximately doubled in time
 //! to calculate, and the number of elements looked to be always exactly one less than twice that
 //! of the previous round, and it made it to round 28 before being timed out. At that point, the
 //! length was 2550136833, which at 4 bytes per element, had a minimum size of 9.6 GiB.

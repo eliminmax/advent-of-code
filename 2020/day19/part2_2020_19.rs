@@ -137,10 +137,10 @@ impl ResolvedRuleZero {
         }
 
         let Rule::Resolved(rule42) = rules.remove(&42).unwrap() else {
-            panic!("unresovled rule 42");
+            panic!("unresolved rule 42");
         };
         let Rule::Resolved(rule31) = rules.remove(&31).unwrap() else {
-            panic!("unresovled rule 31");
+            panic!("unresolved rule 31");
         };
 
         Self { rule42, rule31 }

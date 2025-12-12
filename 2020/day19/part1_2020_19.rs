@@ -115,7 +115,7 @@ fn resolve_rule_0(rule_text: &str) -> HashSet<String> {
     }
 
     let Rule::Resolved(ret) = rules.remove(&0).unwrap() else {
-        panic!("unresovled rule 0");
+        panic!("unresolved rule 0");
     };
     ret
 }

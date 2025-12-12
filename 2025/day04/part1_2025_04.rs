@@ -13,7 +13,7 @@ struct Position {
 }
 
 impl Position {
-    const fn neigbors(&self) -> [Self; 8] {
+    const fn neighbors(&self) -> [Self; 8] {
         macro_rules! pos {
             ($x: expr, $y: expr) => {
                 Position { x: $x, y: $y }
@@ -55,7 +55,7 @@ fn main() {
         rolls
             .iter()
             .filter(|r| {
-                r.neigbors()
+                r.neighbors()
                     .into_iter()
                     .filter(|n| rolls.contains(n))
                     .count()

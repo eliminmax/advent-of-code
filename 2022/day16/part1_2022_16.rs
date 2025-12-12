@@ -61,7 +61,7 @@ fn main() {
 
     for line in input.lines() {
         // This parsing code is horrible, but it worked flawlessly first try. Somehow.
-        // So of cource, I went and made it wven worse. It still worked. I feel gross.
+        // So of course, I went and made it wven worse. It still worked. I feel gross.
         let (id, flow_rate, links) = line
             .strip_prefix("Valve ")
             .and_then(|s| s.split_once(" has flow rate="))

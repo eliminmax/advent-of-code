@@ -54,7 +54,7 @@ impl From<HashMap<(i16, i16), Vec<(i16, i16)>>> for TargetOrder {
 impl Iterator for TargetOrder {
     type Item = (i16, i16);
     fn next(&mut self) -> Option<<Self as Iterator>::Item> {
-        // pop the first astroid reached at the current angle
+        // pop the first asteroid reached at the current angle
         let ret = self.angle_map.get_mut(self.angle_index)?.pop_front();
         // Before returning increment the index, then if it's out-of-bounds, prune empty queues and
         // reset it to zero

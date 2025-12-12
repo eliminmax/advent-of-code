@@ -59,7 +59,7 @@ fn main() {
         total += match op_str.as_bytes()[0] {
             b'+' => nums.sum::<u64>(),
             b'*' => nums.product(),
-            b => panic!("invalid opration: {}", b.escape_ascii()),
+            b => panic!("invalid operation: {}", b.escape_ascii()),
         };
     }
 

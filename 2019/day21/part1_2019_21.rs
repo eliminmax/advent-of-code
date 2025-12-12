@@ -41,7 +41,7 @@ macro_rules! springscript {
 // In terms of converting to springscript, [AND D J] should be the final instruction, so the
 // remaining task is to encode (A | ~B) & (B | ~A) & (~B | ~C), or something equivalent to it.
 //
-// Plugging that expression into https://www.boolean-algebra.com/, it simpifies to
+// Plugging that expression into https://www.boolean-algebra.com/, it simplifies to
 // `(A & B & ~C) | (~A & ~B)
 //
 // (~A & ~B) can be stored in T with the following:

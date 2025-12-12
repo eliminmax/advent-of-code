@@ -123,8 +123,8 @@ impl DonutMaze {
 
         let start_id = TeleportID::from(b"AA");
         let end_id = TeleportID::from(b"ZZ");
-        assert!(self.unlinked.contains_key(&start_id), "Misisng start node");
-        assert!(self.unlinked.contains_key(&end_id), "Misisng target node");
+        assert!(self.unlinked.contains_key(&start_id), "Missing start node");
+        assert!(self.unlinked.contains_key(&end_id), "Missing target node");
 
         let mut distances: HashMap<Location, u32> = HashMap::with_capacity(self.nodes.len());
         let mut queue: BinaryHeap<Reverse<(u32, Location)>> =

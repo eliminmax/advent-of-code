@@ -21,9 +21,9 @@ enum SnailfishNum {
 /// enum representing the status of the explosion processing
 #[derive(Debug, PartialEq, Clone, Copy)]
 enum ExplosionOutcome {
-    /// no explosion has occured
+    /// no explosion has occurred
     NoExplosion,
-    /// an explosion has occured and been resolved
+    /// an explosion has occurred and been resolved
     Resolved,
     /// the child node has exploded, and cleanup is needed.
     ChildExploding { left: u8, right: u8 },
@@ -34,7 +34,7 @@ enum ExplosionOutcome {
 }
 
 impl SnailfishNum {
-    /// Add the right value that resuted from an explosion to the left
+    /// Add the right value that resulted from an explosion to the left
     fn add_from_left_explosion(&mut self, right: u8) {
         match self {
             SnailfishNum::Single(i) => *i += right,
@@ -42,7 +42,7 @@ impl SnailfishNum {
         }
     }
 
-    /// Add the left value that resuted from an explosion to the right
+    /// Add the left value that resulted from an explosion to the right
     fn add_from_right_explosion(&mut self, left: u8) {
         match self {
             SnailfishNum::Single(i) => *i += left,
@@ -51,7 +51,7 @@ impl SnailfishNum {
     }
 
     /// try to handle an explosion within a child node.
-    /// Returns true if an explosion occured, and false if no explodable pairs were found.
+    /// Returns true if an explosion occurred, and false if no explodable pairs were found.
     fn try_explode(&mut self) -> bool {
         self.explode_inner(0) != ExplosionOutcome::NoExplosion
     }

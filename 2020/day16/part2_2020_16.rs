@@ -26,15 +26,15 @@ fn resolve_fields(
     let mut unmatched_columns: VecDeque<usize> = (0..unresolved_fields.len()).collect();
     let mut resolved = HashMap::with_capacity(unresolved_fields.len());
     while let Some(col) = unmatched_columns.pop_front() {
-        let mut possibilites = unresolved_fields.clone();
+        let mut possibilities = unresolved_fields.clone();
         for ticket in nearby_tickets {
-            possibilites.retain(|f| {
+            possibilities.retain(|f| {
                 f.ranges[0].contains(&ticket[col]) || f.ranges[1].contains(&ticket[col])
             });
         }
-        assert!(!possibilites.is_empty());
-        if possibilites.len() == 1 {
-            let field = possibilites.into_iter().next().unwrap();
+        assert!(!possibilities.is_empty());
+        if possibilities.len() == 1 {
+            let field = possibilities.into_iter().next().unwrap();
             unresolved_fields.remove(&field);
             resolved.insert(field.name.to_owned(), col);
         } else {

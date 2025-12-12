@@ -53,7 +53,7 @@ else
     reuse annotate -l 0BSD -y "$c_year" -c "$c_name" "$outname"
 fi
 
-# mark scripts as exectutable, and add appropriate gitignore for
+# mark scripts as executable, and add appropriate gitignore for
 # compiled languages
 if [ "$(head -c2 "$outname")" = '#!' ]; then
     chmod +x "$outname"
