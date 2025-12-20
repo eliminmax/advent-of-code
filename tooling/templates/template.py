@@ -2,13 +2,14 @@
 
 # --solution-comment--
 
-import sys
+from collections.abc import Iterable
+from sys import argv
 
 
-def main() -> None:
-    with open(sys.argv[1] if sys.argv[1:] else "input", "r") as f:
-        pass
+def main(input_lines: Iterable[str]):
+    ...
 
 
 if __name__ == "__main__":
-    main()
+    with open(argv[1] if argv[1:] else "input", "r") as f:
+        print(main(f))
