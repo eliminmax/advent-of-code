@@ -1,54 +1,43 @@
 #!/usr/bin/env bash
 
-# SPDX-FileCopyrightText: 2024 - 2025 Eli Array Minkoff
+# SPDX-FileCopyrightText: 2024 - 2026 Eli Array Minkoff
 #
 # SPDX-License-Identifier: 0BSD
 
-aoc_setup () {
+cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" || return 1
 
-    cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" || return 1
+local pylibdir="$PWD/pylib"
+local mypystubdir="$pylibdir/.mypy_stubs"
+local toolingbindir="$PWD/bin"
 
-    local pylibdir="$PWD/pylib"
-    local mypystubdir="$pylibdir/.mypy_stubs"
-    local toolingbindir="$PWD/bin"
+# surround with colons to simplify matching if pylibdir is at an end
+case ":$PYTHONPATH:" in
+    # do nothing if pylibdir is already in PYTHONPATH
+    *":$pylibdir:"*) : ;;
+    # if PYTHONPATH is empty, set it to pylibdir
+    ::) export PYTHONPATH="$pylibdir" ;;
+    # if PYTHONPATH is non-empty, append it
+    *) export PYTHONPATH="$PYTHONPATH:$pylibdir" ;;
+esac
 
-    # surround with colons to simplify matching if pylibdir is at an end
-    case ":$PYTHONPATH:" in
-        # do nothing if pylibdir is already in PYTHONPATH
-        *":$pylibdir:"*) : ;;
-        # if PYTHONPATH is empty, set it to pylibdir
-        ::) export PYTHONPATH="$pylibdir" ;;
-        # if PYTHONPATH is non-empty, append it
-        *) export PYTHONPATH="$PYTHONPATH:$pylibdir" ;;
-    esac
+case ":$MYPYPATH:" in
+    *":$mypystubdir:"*) : ;;
+    ::) export MYPYPATH="$mypystubdir" ;;
+    *) export MYPYPATH="$MYPYPATH:$mypystubdir" ;;
+esac
 
-    case ":$MYPYPATH:" in
-        *":$mypystubdir:"*) : ;;
-        ::) export MYPYPATH="$mypystubdir" ;;
-        *) export MYPYPATH="$MYPYPATH:$mypystubdir" ;;
-    esac
+case ":$PATH:" in
+    *":$toolingbindir:"*) : ;;
+    # if PATH is empty, there's some deeper problem
+    *) export PATH="$PATH:$toolingbindir" ;;
+esac
 
-    case ":$PATH:" in
-        *":$toolingbindir:"*) : ;;
-        # if PATH is empty, there's some deeper problem
-        *) export PATH="$PATH:$toolingbindir" ;;
-    esac
+cd ..
 
-    cd ..
-
-    unset OLDPWD
-    export AOC_GIT_DIR="$PWD"
-}
-
-aoc_setup
+unset OLDPWD
+export AOC_GIT_DIR="$PWD"
 
 socket_path="/run/user/$(id -u)/aoc_byobusock"
 
-tmux_status="$(byobu-tmux -S "$socket_path" ls 2>&1)"
-
-if [ "$tmux_status" = "no server running on $socket_path" ]; then
-    exec byobu-tmux -S "$socket_path"
-else
-    exec byobu-tmux -S "$socket_path" attach
-fi
+exec byobu-tmux -S "$socket_path" new-session -A -s aoc
 # vi: ft=bash
